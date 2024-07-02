@@ -1,4 +1,5 @@
-﻿using NetTopologySuite.Geometries;
+﻿using Domain.Entities.BasesEntities;
+using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

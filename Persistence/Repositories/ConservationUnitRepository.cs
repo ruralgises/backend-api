@@ -3,6 +3,7 @@ using Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NetTopologySuite.Geometries;
 using Persistence.Context;
+using Persistence.Repositories.Bases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace Persistence.Repositories
 {
     public class ConservationUnitRepository : GeoSpatialBaseIntersectionRepository<ConservationUnit>, IConservationUnitsRepository
     {
-        public ConservationUnitRepository(AppDbContext context) : base(context) { }
+        public ConservationUnitRepository(ConservationUnitDbContext context) : base(context) { }
     }
 }

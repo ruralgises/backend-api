@@ -1,4 +1,4 @@
-﻿using Application.DTOs;
+﻿using Application.DTOs.Response;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace Application.Mappers
 {
     public static class RuralPropertyMapper
     {
-        public static RuralPropertyResponse MapToResponse(this RuralProperty ruralPropertie)
+        public static RuralPropertyResponse ToResponse(RuralProperty ruralPropertie)
         {
             return new RuralPropertyResponse
             {
@@ -19,13 +19,19 @@ namespace Application.Mappers
                 AreaHa = ruralPropertie.AreaHa,
                 Status = ruralPropertie.Status,
                 Type = ruralPropertie.Type,
-                Condition = ruralPropertie.Condition,
-                ConservationUnits = new List<ConservationUnit>(),
-                Deforestations = new List<Deforestation>(),
-                Embargoes = new List<Embargo>(),
-                QuilombolaAreas = new List<QuilombolaArea>(),
-                Settlements = new List<Settlement>(),
+                Condition = ruralPropertie.Condition
             };
+        }
+
+        public static IList<RuralPropertyResponse> ToResponse (IList<RuralProperty> ruralProperties) {
+           var responses = new List<RuralPropertyResponse>();
+
+            foreach (var item in ruralProperties)
+            {
+                responses.Add (ToResponse(item));
+            }
+
+            return responses;
         }
     }
 }

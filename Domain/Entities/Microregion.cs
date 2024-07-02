@@ -1,4 +1,5 @@
-﻿using NetTopologySuite.Geometries;
+﻿using Domain.Entities.BasesEntities;
+using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,13 +12,6 @@ namespace Domain.Entities
 {
     [Table("microrregioes")]
     public class Microregion : LocationGeoSpatialBase
-    {
-        [Column("cd_micro")]
-        public string Code { get; private set; } = string.Empty;
-
-        [Column("nm_micro")]
-        public string Name { get; private set; } = string.Empty;
-
-        protected Microregion() { }
+    {        protected Microregion() { }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Persistence.Context;
+using Persistence.Repositories.Bases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Persistence.Repositories
 {
     public class SettlementsRepository : GeoSpatialBaseIntersectionRepository<Settlement>, ISettlementsRepository
     {
-        public SettlementsRepository(AppDbContext context) : base(context)
+        public SettlementsRepository(SettlementsDbContext context) : base(context)
         {
         }
     }

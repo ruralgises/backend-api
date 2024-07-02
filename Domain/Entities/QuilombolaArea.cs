@@ -1,4 +1,5 @@
-﻿using NetTopologySuite.Geometries;
+﻿using Domain.Entities.BasesEntities;
+using NetTopologySuite.Geometries;
 using NetTopologySuite.Shape;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Domain.Entities
         [Column("nr_process")]
         public string ProcessNumber { get; private set; } = string.Empty;
 
-        [Column("nn_comunid")]
+        [Column("nm_comunid")]
         public string CommunityName { get; private set; } = string.Empty;
 
         [Column("nr_familia")]

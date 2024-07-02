@@ -10,11 +10,11 @@ namespace Domain.Entities
     {
         public Municipality? Municipality { get; init; }
         public Microregion? Microregion { get; init; }
-        public Messorerion? Messorerion { get; init; }
+        public Messoregion? Messorerion { get; init; }
 
         public Location() { }
 
-        public Location(Municipality? municipality, Microregion? microregion, Messorerion? messorerion)
+        public Location(Municipality? municipality, Microregion? microregion, Messoregion? messorerion)
         {
             Municipality = municipality;
             Microregion = microregion;

@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Repositories.Bases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces.Repositories
 {
-    public interface IMicroregionRepository : IGeoSpatialBaseRepository<Microregion>
+    public interface IMicroregionRepository : ILocationsGeoSpatialBaseRepository<Microregion>
     {
     }
 }

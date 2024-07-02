@@ -1,17 +1,10 @@
-﻿using NetTopologySuite.Geometries;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using Domain.Entities.BasesEntities;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    [Table("propriedades_rurais")]
-    public class RuralProperty : GeoSpatialBaseIntersection
+    [Table("imoveis_rurais")]
+    public class RuralProperty : GeoSpatialBase
     {
         [Column("nom_tema")]
         public string ThemeName { get; private set; } = string.Empty;
@@ -20,9 +13,10 @@ namespace Domain.Entities
         public string Code { get; private set; } = string.Empty;
 
         [Column("num_area")]
-        public double AreaHa { get; private set; }
+        public double AreaHa { get; set; }
 
         [Column("ind_status")]
+
         public string Status { get; private set; } = string.Empty;
 
         [Column("ind_tipo")]
@@ -30,6 +24,9 @@ namespace Domain.Entities
 
         [Column("des_condic")]
         public string Condition { get; private set; } = string.Empty;
+
+        [Column("municipio")]
+        public string Municipio { get; private set; } = string.Empty;
 
         protected RuralProperty() { }
     }

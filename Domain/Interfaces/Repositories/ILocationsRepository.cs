@@ -10,6 +10,6 @@ namespace Domain.Interfaces.Repositories
 {
     public interface ILocationsRepository
     {
-        Task<Entities.Location> GetByGeometry(Geometry geometry, CancellationToken cancellationToken);
+        Task<Entities.Location> GetByMunipalityName(string MunicipalyName, CancellationToken cancellationToken);
     }
 }

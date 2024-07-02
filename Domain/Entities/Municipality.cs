@@ -1,4 +1,5 @@
-﻿using NetTopologySuite.Geometries;
+﻿using Domain.Entities.BasesEntities;
+using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,12 +13,6 @@ namespace Domain.Entities
     [Table("municipios")]
     public class Municipality : LocationGeoSpatialBase
     {
-        [Column("cd_mun")]
-        public string Code { get; private set; } = string.Empty;
-
-        [Column("nm_mun")]
-        public string Name { get; private set; } = String.Empty;
-
         protected Municipality() { }
     }
 }

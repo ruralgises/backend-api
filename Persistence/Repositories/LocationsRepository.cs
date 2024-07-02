@@ -2,6 +2,7 @@
 using Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
+using Persistence.Repositories.Bases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,14 @@ namespace Persistence.Repositories
 {
     public class LocationsRepository : ILocationsRepository
     {
-        private readonly LocationsGeoSpatialBaseRepository<Municipality> _municipalityRepository;
+        private readonly IMunicipalitiesRepository _municipalityRepository;
         private readonly IMicroregionRepository _microregionRepository;
         private readonly IMessoreionRepository _messoreionRepository;
 
+        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1); // Semáforo para sincronização
+
         public LocationsRepository(
-            LocationsGeoSpatialBaseRepository<Municipality> municipalityRepository, 
+            IMunicipalitiesRepository municipalityRepository, 
             IMicroregionRepository microregionRepository, 
             IMessoreionRepository messoreionRepository)
         {
@@ -26,22 +29,26 @@ namespace Persistence.Repositories
             _municipalityRepository = municipalityRepository;
         }
 
-        public async Task<Location> GetByGeometry(NetTopologySuite.Geometries.Geometry geometry, CancellationToken cancellationToken)
+        public async Task<Location> GetByMunipalityName(string MunicipalyName, CancellationToken cancellationToken)
         {
-            var municipalityTask = _municipalityRepository.GetByGeometryQueryable(geometry).FirstOrDefaultAsync(cancellationToken);
-            var microregionTask = _microregionRepository.GetByGeometryQueryable(geometry).FirstOrDefaultAsync(cancellationToken);
-            var mesoregionTask = _messoreionRepository.GetByGeometryQueryable(geometry).FirstOrDefaultAsync(cancellationToken);
-
-            var municipality = await municipalityTask;
-            var microregion = await microregionTask;
-            var mesoregion = await mesoregionTask;
-
-            return new Location
+            await _semaphore.WaitAsync(cancellationToken); // Aguarda até obter o semáforo
+            try
             {
-                Messorerion = mesoregion,
-                Microregion = microregion,
-                Municipality = municipality
-            };
+                var municipality = await _municipalityRepository.GetByName(MunicipalyName, cancellationToken);
+                var microregion = await _microregionRepository.GetByGeometry(municipality.Geom, cancellationToken);
+                var mesoregion = await _messoreionRepository.GetByGeometry(municipality.Geom, cancellationToken);
+
+                return new Location
+                {
+                    Messorerion = mesoregion,
+                    Microregion = microregion,
+                    Municipality = municipality
+                };
+            }
+            finally
+            {
+                _semaphore.Release(); // Libera o semáforo
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Persistence.Context;
-using Persistence.Repositories;
+using Persistence.Repositories.Bases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace Persistence.Repositories
 {
     internal class MicroregionsRepository : LocationsGeoSpatialBaseRepository<Microregion>, IMicroregionRepository
     {
-        public MicroregionsRepository(AppDbContext context) : base(context)
+        public MicroregionsRepository(LocationDbContext context) : base(context)
         {}
     }
 }

@@ -4,21 +4,33 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Context;
 using Persistence.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence
 {
     public static class ServiceExtension
     {
         public static void ConfigurePersistenceApp(this IServiceCollection services, IConfiguration configuration) {
-            var connectionString = configuration.GetConnectionString("db");
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<AppDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
+            services.AddDbContext<InformationDatabaseDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
+            services.AddDbContext<RuralPropertiesDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
+            services.AddDbContext<LocationDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
+            services.AddDbContext<ConservationUnitDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
+            services.AddDbContext<DeforestationDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
+            services.AddDbContext<EmbargoDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
+            services.AddDbContext<QuilombolaAreaDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
+            services.AddDbContext<SettlementsDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
 
+            services.AddScoped<IInformationDatabaseRepository, InformationDatabaseRepository>();
+            services.AddScoped<IDeforestationsRepository, DeforestationRepository>();
+            services.AddScoped<IEmbargoesRepository, EmbagosRepository>();
+            services.AddScoped<IQuilombolaAreasRepository, QuilombolaAreasRepository>();
+            services.AddScoped<ISettlementsRepository, SettlementsRepository>();
+            services.AddScoped<IConservationUnitsRepository, ConservationUnitRepository>();
+            services.AddScoped<IMunicipalitiesRepository, MunicipalitiesRepository>();
+            services.AddScoped<IMicroregionRepository, MicroregionsRepository>();
+            services.AddScoped<IMessoreionRepository, MessoreionsRepository>();
+            services.AddScoped<ILocationsRepository, LocationsRepository>();
             services.AddScoped<IRuralPropertiesRepository, RuralPropertiesRepository>();
         }
     }

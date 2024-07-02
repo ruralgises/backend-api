@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Persistence.Context;
+using Persistence.Repositories.Bases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
-    internal class MunicipalitiesRepository : LocationsGeoSpatialBaseRepository<Municipality>, IMunicipalitiesRepository
+    public class MunicipalitiesRepository : LocationsGeoSpatialBaseRepository<Municipality>, IMunicipalitiesRepository
     {
-        public MunicipalitiesRepository(AppDbContext context) : base(context)
+        public MunicipalitiesRepository(LocationDbContext context) : base(context)
         {
         }
     }

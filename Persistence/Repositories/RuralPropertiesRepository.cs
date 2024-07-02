@@ -13,9 +13,9 @@ namespace Persistence.Repositories
 {
     public class RuralPropertiesRepository : IRuralPropertiesRepository
     {
-        private readonly AppDbContext _context;
+        private readonly RuralPropertiesDbContext _context;
 
-        public RuralPropertiesRepository(AppDbContext context)
+        public RuralPropertiesRepository(RuralPropertiesDbContext context)
         {
             _context = context;
         }
@@ -52,6 +52,13 @@ namespace Persistence.Repositories
             }
 
             return await query.ToListAsync(cancellationToken);
+        }
+
+        public async Task<RuralProperty> GetByCode(string code, CancellationToken cancellationToken)
+        {
+            var query = _context.RuralProperties.Where(item => item.Code == code);
+
+            return await query.FirstOrDefaultAsync(cancellationToken);
         }
     }
 }

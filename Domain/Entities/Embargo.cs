@@ -1,4 +1,5 @@
-﻿using NetTopologySuite.Geometries;
+﻿using Domain.Entities.BasesEntities;
+using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,10 +19,10 @@ namespace Domain.Entities
         [Column("data_tad")]
         public DateOnly EmbargoIssuanceDate { get; private set; }
 
-        [Column("nom_pessoa")]
+        [Column("nom_pessoa")] 
         public string NameEmbargoed {  get; private set; } = string.Empty;
 
-        [Column("nom_pessoa")]
+        [Column("cpf_cnpj_i")]
         public string CPF_CNPJ { get; private set; } = string.Empty;
 
         [Column("processo_t")]
@@ -33,13 +34,13 @@ namespace Domain.Entities
         [Column("num_auto_i")]
         public string InflationActNumber { get; private set; } = string.Empty;
 
-        [Column("des_infracao")]
+        [Column("des_infrac")]
         public string InfractionDescription { get; private set; } = string.Empty;
 
         [Column("status_tad")]
         public string Status { get; private set; } = string.Empty;
 
-        [Column("data_cadastro_tad")]
+        [Column("data_cadas")]
         public DateOnly RegistrationDate { get; private set; }
 
         [Column("legislacao")]

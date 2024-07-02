@@ -1,4 +1,5 @@
-﻿using NetTopologySuite.Geometries;
+﻿using Domain.Entities.BasesEntities;
+using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,10 +14,7 @@ namespace Domain.Entities
     public class Deforestation : GeoSpatialBaseIntersection
     {
         [Column("year")]
-        public string Year { get; private set; } = string.Empty;
-
-        [Column("area_km")]
-        public double AreaTotalKM { get; private set; }
+        public int Year { get; private set; }
 
         protected Deforestation() {}
     }

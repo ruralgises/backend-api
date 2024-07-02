@@ -2,6 +2,7 @@
 using Domain.Interfaces.Repositories;
 using NetTopologySuite.Geometries;
 using Persistence.Context;
+using Persistence.Repositories.Bases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,6 @@ namespace Persistence.Repositories
 {
     public class DeforestationRepository : GeoSpatialBaseIntersectionRepository<Deforestation>, IDeforestationsRepository
     {
-        public DeforestationRepository(AppDbContext context) : base(context) { }
+        public DeforestationRepository(DeforestationDbContext context) : base(context) { }
     }
 }
