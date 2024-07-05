@@ -9,7 +9,6 @@ namespace Application.DTOs.Response.Bases
 {
     public abstract class GeoSpatialBaseIntersectionResponse
     {
-        public double AreaTotalHa { get; init; }
         public double AreaIntersectHa { get; init; }
     }
 }

@@ -20,6 +20,7 @@ namespace Persistence
             services.AddDbContext<EmbargoDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
             services.AddDbContext<QuilombolaAreaDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
             services.AddDbContext<SettlementsDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
+            services.AddDbContext<UseCoverageDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
 
             services.AddScoped<IInformationDatabaseRepository, InformationDatabaseRepository>();
             services.AddScoped<IDeforestationsRepository, DeforestationRepository>();
@@ -31,6 +32,7 @@ namespace Persistence
             services.AddScoped<IMicroregionRepository, MicroregionsRepository>();
             services.AddScoped<IMessoreionRepository, MessoreionsRepository>();
             services.AddScoped<ILocationsRepository, LocationsRepository>();
+            services.AddScoped<IUseCoverageRepository, UseCoverageRepository>();
             services.AddScoped<IRuralPropertiesRepository, RuralPropertiesRepository>();
         }
     }

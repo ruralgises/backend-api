@@ -15,7 +15,6 @@ namespace Application.Mappers
             return new QuilombolaAreaResponse()
             {
                 AreaIntersectHa = quilombolaArea.AreaIntersectHa,
-                AreaTotalHa = quilombolaArea.AreaTotalHa,
                 CommunityName = quilombolaArea.CommunityName,
                 DecreeDate = quilombolaArea.DecreeDate,
                 FamilyNumber = quilombolaArea.FamilyNumber,

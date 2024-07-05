@@ -1,11 +1,12 @@
 ﻿using Application.DTOs.Request;
 using Application.DTOs.Response;
+using Application.DTOs.Response.Bases;
 
 namespace Application.Interfaces.Services
 {
     public interface IRuralPropertyMinimumService
     {
-        Task<IList<RuralPropertyMinimumResponse>> GetByCode(GetByCodeRuralPropretiesMinimumRequest request, CancellationToken cancellationToken);
-        Task<IList<RuralPropertyMinimumResponse>> GetByCoordinate(GetByCoordinateRuralPropretiesMinimumRequest request, CancellationToken cancellationToken);
+        Task<GeoSpatialInformationResponse<RuralPropertyMinimumResponse>> GetByCode(GetByCodeRuralPropretiesMinimumRequest request, CancellationToken cancellationToken);
+        Task<GeoSpatialInformationResponse<RuralPropertyMinimumResponse>> GetByCoordinate(GetByCoordinateRuralPropretiesMinimumRequest request, CancellationToken cancellationToken);
     }
 }

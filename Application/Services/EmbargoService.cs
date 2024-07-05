@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Interfaces.Services;
+using Domain.Enumerations;
 
 namespace Application.Services
 {
@@ -23,14 +24,14 @@ namespace Application.Services
             this._informationDatabaseService = informationDatabaseService;
         }
 
-        public async Task<GeoSpatialInformationResponse<EmbargoResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
+        public async Task<GeoSpatialIntersectInformationResponse<EmbargoResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
         {
             var embagoes = _embargosRepository.GetByGeometry(geom, cancellationToken);
             var embargoesResponse = EmbargoMapper.ToResponse(await embagoes);
 
-            var informationResponse = await _informationDatabaseService.GetByNameAsync("Embargo", cancellationToken);
+            var informationResponse = await _informationDatabaseService.GetByNameAsync(Entity.Embargo, cancellationToken);
 
-            return GeoSpatialInformationResponseMapper.ToInformationReponse(embargoesResponse, informationResponse);
+            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse(embargoesResponse, informationResponse);
         }
     }
 }

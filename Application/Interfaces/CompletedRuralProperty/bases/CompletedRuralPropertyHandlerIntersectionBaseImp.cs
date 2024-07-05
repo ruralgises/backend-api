@@ -25,6 +25,6 @@ namespace Application.Interfaces.CompletedRuralProperty.bases
             await taskNext;
         }
 
-        public abstract void Assign(RuralPropertyResponse ruralPropertyResponse, GeoSpatialInformationResponse<T> intersectionResponse);
+        public abstract void Assign(RuralPropertyResponse ruralPropertyResponse, GeoSpatialIntersectInformationResponse<T> intersectionResponse);
     }
 }

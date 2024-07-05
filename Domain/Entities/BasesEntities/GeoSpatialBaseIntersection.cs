@@ -9,7 +9,6 @@ namespace Domain.Entities.BasesEntities
 {
     public abstract class GeoSpatialBaseIntersection : GeoSpatialBase
     {
-        public double AreaTotalHa { get; set; }
         public double AreaIntersectHa { get; set; }
     }
 }

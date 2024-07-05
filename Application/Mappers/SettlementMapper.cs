@@ -15,7 +15,6 @@ namespace Application.Mappers
             return new SettlementResponse()
             {
                 AreaIntersectHa = settlement.AreaIntersectHa,
-                AreaTotalHa = settlement.AreaTotalHa,
                 CodeSIPRA = settlement.CodeSIPRA,
                 CreationDate = settlement.CreationDate,
                 DateObtaining = settlement.DateObtaining,

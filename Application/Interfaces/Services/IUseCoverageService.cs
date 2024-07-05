@@ -1,5 +1,5 @@
 ﻿using Application.DTOs.Response;
-using Domain.Enumerations;
+using Application.Interfaces.Services.Bases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Interfaces.Services
 {
-    public interface IInformationDatabaseService
+    public interface IUseCoverageService : IGeoSpatialBaseService<UseCoverageResponse>
     {
-        Task<InformationDatabaseResponse> GetByNameAsync(Entity entity, CancellationToken cancellationToken);
     }
 }

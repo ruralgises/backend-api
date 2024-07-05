@@ -16,7 +16,6 @@ namespace Application.Mappers
             {
                 AdministrativeProcessNumber = embargo.AdministrativeProcessNumber,
                 AreaIntersectHa = embargo.AreaIntersectHa,
-                AreaTotalHa = embargo.AreaTotalHa,
                 Article = embargo.Article,
                 CPF_CNPJ = embargo.CPF_CNPJ,
                 EmbargoIssuanceDate = embargo.EmbargoIssuanceDate,

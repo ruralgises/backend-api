@@ -2,6 +2,7 @@
 using Application.DTOs.Response.Bases;
 using Application.Interfaces.Services;
 using Application.Mappers;
+using Domain.Enumerations;
 using Domain.Interfaces.Repositories;
 using NetTopologySuite.Geometries;
 using System;
@@ -22,14 +23,14 @@ namespace Application.Services
             this._deforestationRepository = repository;
             this._informationDatabaseService = informationDatabaseService;
         }
-        public async Task<GeoSpatialInformationResponse<DeforestationResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
+        public async Task<GeoSpatialIntersectInformationResponse<DeforestationResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
         {
             var desforestation = _deforestationRepository.GetByGeometry(geom, cancellationToken);
             var desforestationResponse = DeforestationMapper.ToReponse(await desforestation);
 
-            var informationResponse = await _informationDatabaseService.GetByNameAsync("Deforestation", cancellationToken);
+            var informationResponse = await _informationDatabaseService.GetByNameAsync(Entity.Deforestation, cancellationToken);
 
-            return GeoSpatialInformationResponseMapper.ToInformationReponse(desforestationResponse, informationResponse);
+            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse(desforestationResponse, informationResponse);
         }
     }
 }

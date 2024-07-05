@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Enumerations;
 using Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
@@ -20,14 +21,14 @@ namespace Persistence.Repositories
             _context = context;
         }
 
-        public async Task<InformationDatabase?> GetByNameAsync(string name, CancellationToken cancellationToken)
+        public async Task<InformationDatabase?> GetInfo(Entity entity, CancellationToken cancellationToken)
         {
             await _semaphore.WaitAsync(cancellationToken); // Aguarda até obter o semáforo
             try
             {
                 return await _context
                     .informationDatabases
-                    .Where(item => item.Name == name)
+                    .Where(item => item.Entity == entity)
                     .FirstOrDefaultAsync(cancellationToken);
             }
             finally

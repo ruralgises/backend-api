@@ -2,6 +2,7 @@
 using Application.DTOs.Response.Bases;
 using Application.Interfaces.Services;
 using Application.Mappers;
+using Domain.Enumerations;
 using Domain.Interfaces.Repositories;
 using NetTopologySuite.Geometries;
 
@@ -18,14 +19,14 @@ namespace Application.Services
             this._informationDatabaseService = informationDatabaseService;
         }
 
-        public async Task<GeoSpatialInformationResponse<QuilombolaAreaResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
+        public async Task<GeoSpatialIntersectInformationResponse<QuilombolaAreaResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
         {
             var quilombolaArea = _quilombolaAreasRepository.GetByGeometry(geom, cancellationToken);
             var quilombolaAreaResponse = QuilombolaAreaMapper.ToResponse(await quilombolaArea);
 
-            var information = await _informationDatabaseService.GetByNameAsync("QuilombolaArea", cancellationToken);
+            var information = await _informationDatabaseService.GetByNameAsync(Entity.QuilombolaArea, cancellationToken);
 
-            return GeoSpatialInformationResponseMapper.ToInformationReponse(quilombolaAreaResponse, information);
+            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse(quilombolaAreaResponse, information);
         }
     }
 }

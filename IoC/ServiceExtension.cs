@@ -11,6 +11,7 @@ namespace IoC
         {
             services.AddTransient<IInformationDatabaseService, InformationDatabaseService>();
 
+            services.AddTransient<IUseCoverageService, UseCoverageService>();
             services.AddTransient<IConservationUnitService, ConservationUnitService>();
             services.AddTransient<IDeforestationService, DeforestationService>();
             services.AddTransient<IEmbargoService, EmbargoService>();
@@ -18,6 +19,7 @@ namespace IoC
             services.AddTransient<ISettlementService, SettlementService>();
             services.AddTransient<ILocationService, LocationService>();
             services.AddTransient<IRuralPropertyMinimumService, RuralPropertyMinimumService>();
+            
             services.AddTransient<IRuralPropertyService, RuralPropertyService>();
         }
     }

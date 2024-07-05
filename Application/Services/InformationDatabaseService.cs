@@ -1,6 +1,7 @@
 ﻿using Application.DTOs.Response;
 using Application.Interfaces.Services;
 using Application.Mappers;
+using Domain.Enumerations;
 using Domain.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,9 @@ namespace Application.Services
             _repository = repository;
         }
 
-        public async Task<InformationDatabaseResponse> GetByNameAsync(string name, CancellationToken cancellationToken)
+        public async Task<InformationDatabaseResponse> GetByNameAsync(Entity entity, CancellationToken cancellationToken)
         {
-            var result =  await _repository.GetByNameAsync(name, cancellationToken);
+            var result =  await _repository.GetInfo(entity, cancellationToken);
 
             return InformationDatabaseMapper.ToResponse(result);
         }

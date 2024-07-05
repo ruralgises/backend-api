@@ -19,7 +19,6 @@ namespace Application.Mappers
                 Category = conservationUnit.Category,
                 ActCreation = conservationUnit.ActCreation,
                 AreaIntersectHa = conservationUnit.AreaIntersectHa,
-                AreaTotalHa = conservationUnit.AreaTotalHa,
                 CNUCCode = conservationUnit.CNUCCode,
                 Group = conservationUnit.Group,
                 Realm = conservationUnit.Realm,

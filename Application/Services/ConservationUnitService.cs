@@ -2,6 +2,7 @@
 using Application.DTOs.Response.Bases;
 using Application.Interfaces.Services;
 using Application.Mappers;
+using Domain.Enumerations;
 using Domain.Interfaces.Repositories;
 using NetTopologySuite.Geometries;
 
@@ -18,14 +19,14 @@ namespace Application.Services
             this._informationDatabaseService = informationDatabaseService;
         }
 
-        public async Task<GeoSpatialInformationResponse<ConservationUnitResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
+        public async Task<GeoSpatialIntersectInformationResponse<ConservationUnitResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
         {
             var conservationUnits = _conservationUnitRepository.GetByGeometry(geom, cancellationToken);
             var conservationUnitsResponse = ConservationUnitMapper.ToResponse(await conservationUnits);
 
-            var informationResponse = await _informationDatabaseService.GetByNameAsync("ConservationUnit", cancellationToken);
+            var informationResponse = await _informationDatabaseService.GetByNameAsync(Entity.ConservationUnit, cancellationToken);
 
-            var r = GeoSpatialInformationResponseMapper.ToInformationReponse<ConservationUnitResponse>(conservationUnitsResponse, informationResponse);
+            var r = GeoSpatialIntersectInformationResponseMapper.ToInformationReponse<ConservationUnitResponse>(conservationUnitsResponse, informationResponse);
 
             return r;
         }

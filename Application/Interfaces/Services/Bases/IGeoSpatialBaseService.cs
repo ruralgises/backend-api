@@ -11,6 +11,6 @@ namespace Application.Interfaces.Services.Bases
 {
     public interface IGeoSpatialBaseService<T> where T : GeoSpatialBaseIntersectionResponse
     {
-        public Task<GeoSpatialInformationResponse<T>> GetByGeometry(Geometry geom, CancellationToken cancellationToken);
+        public Task<GeoSpatialIntersectInformationResponse<T>> GetByGeometry(Geometry geom, CancellationToken cancellationToken);
     }
 }

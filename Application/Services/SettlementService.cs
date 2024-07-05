@@ -2,6 +2,7 @@
 using Application.DTOs.Response.Bases;
 using Application.Interfaces.Services;
 using Application.Mappers;
+using Domain.Enumerations;
 using Domain.Interfaces.Repositories;
 using NetTopologySuite.Geometries;
 using System;
@@ -24,14 +25,14 @@ namespace Application.Services
             _informationDatabaseService = informationDatabaseService;
         }
 
-        public async Task<GeoSpatialInformationResponse<SettlementResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
+        public async Task<GeoSpatialIntersectInformationResponse<SettlementResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
         {
             var settlement = _settlementRepository.GetByGeometry(geom, cancellationToken);
             var settlementResponse = SettlementMapper.ToResponse(await settlement);
 
-            var information = _informationDatabaseService.GetByNameAsync("Settlement", cancellationToken);
+            var information = _informationDatabaseService.GetByNameAsync(Entity.Settlement, cancellationToken);
 
-            return GeoSpatialInformationResponseMapper.ToInformationReponse(settlementResponse, await information);
+            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse(settlementResponse, await information);
         }
     }
 }

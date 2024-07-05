@@ -3,6 +3,7 @@ using Application.DTOs.Response;
 using Application.Interfaces.Services;
 using Application.Mappers;
 using Domain.Entities;
+using Domain.Enumerations;
 using Domain.Interfaces.Repositories;
 
 namespace Application.Services
@@ -16,15 +17,19 @@ namespace Application.Services
         private IEmbargoService _EmbargoService { get; init; }
         private IQuilombolaAreaService _QuilombolaAreaService { get; init; }
         private ISettlementService _SettlementService { get; init; }
+        private IInformationDatabaseService _informationDatabaseService { get; set; }
+        private IUseCoverageService _useCoverageService { get; set; }
 
         public RuralPropertyService(
-            IRuralPropertiesRepository ruralPropertiesRepository, 
-            ILocationService locationService, 
-            IConservationUnitService conservationUnitService, 
-            IDeforestationService deforestationService, 
-            IEmbargoService embargoService, 
-            IQuilombolaAreaService quilombolaAreaService, 
-            ISettlementService settlementService)
+            IRuralPropertiesRepository ruralPropertiesRepository,
+            ILocationService locationService,
+            IConservationUnitService conservationUnitService,
+            IDeforestationService deforestationService,
+            IEmbargoService embargoService,
+            IQuilombolaAreaService quilombolaAreaService,
+            ISettlementService settlementService,
+            IInformationDatabaseService informationDatabaseService,
+            IUseCoverageService useCoverageService)
         {
             _Repository = ruralPropertiesRepository;
             _LocationService = locationService;
@@ -33,6 +38,8 @@ namespace Application.Services
             _EmbargoService = embargoService;
             _QuilombolaAreaService = quilombolaAreaService;
             _SettlementService = settlementService;
+            _informationDatabaseService = informationDatabaseService;
+            _useCoverageService = useCoverageService;
         }
 
         public async Task<RuralPropertyResponse> GetByCode(GetByCodeRuralPropretiesRequest request, CancellationToken cancellationToken = default)
@@ -51,9 +58,11 @@ namespace Application.Services
             var embargoTask = _EmbargoService.GetByGeometry(ruralProperty.Geom, cancellationToken);
             var quilombolaAreaTask = _QuilombolaAreaService.GetByGeometry(ruralProperty.Geom, cancellationToken);
             var settlementTask = _SettlementService.GetByGeometry(ruralProperty.Geom, cancellationToken);
+            var useCoverageTask = _useCoverageService.GetByGeometry(ruralProperty.Geom, cancellationToken);
 
             //create RuralPropertyResponse
             var ruralPropertyResponse = RuralPropertyMapper.ToResponse(ruralProperty);
+            ruralPropertyResponse.InformationDatabase = await _informationDatabaseService.GetByNameAsync(Entity.RuralProperty, cancellationToken);
 
             //assigning missing data
             ruralPropertyResponse.Location = await locationTask;
@@ -62,6 +71,7 @@ namespace Application.Services
             ruralPropertyResponse.Embargoes = await embargoTask;
             ruralPropertyResponse.QuilombolaAreas = await quilombolaAreaTask;
             ruralPropertyResponse.Settlements = await settlementTask;
+            ruralPropertyResponse.UseCoverage = await useCoverageTask;
 
             return ruralPropertyResponse;
         }

@@ -15,7 +15,6 @@ namespace Application.Mappers
             return new DeforestationResponse()
             {
                 AreaIntersectHa = deforestatio.AreaIntersectHa,
-                AreaTotalHa = deforestatio.AreaTotalHa,
                 Year = deforestatio.Year
             };
         }

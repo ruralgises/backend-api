@@ -30,7 +30,6 @@ namespace Persistence.Repositories.Bases
                 .FromSqlRaw($@"
                 SELECT 
                     *,
-                    ST_Area(ST_Transform(geom, 32723)) / 10000 AS AreaTotalHa,
                     ST_Area(ST_Intersection(ST_Transform(geom, 32723), ST_Transform(ST_GeomFromText('{wktGeometry}', 4674), 32723))) / 10000 AS AreaIntersectHa
                 FROM 
                     {tableName}

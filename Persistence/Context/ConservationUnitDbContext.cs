@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Persistence.Context
 {
-    public class ConservationUnitDbContext :DbContext
+    public class ConservationUnitDbContext : DbContext
     {
 
         public ConservationUnitDbContext(DbContextOptions<ConservationUnitDbContext> options) : base(options) { }

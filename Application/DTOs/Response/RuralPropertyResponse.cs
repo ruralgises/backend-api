@@ -17,11 +17,13 @@ namespace Application.DTOs.Response
         public string Status { get; init; } = string.Empty;
         public string Type { get; init; } = string.Empty;
         public string Condition { get; init; } = string.Empty;
+        public InformationDatabaseResponse InformationDatabase { get; set; }
         public LocationResponse? Location { get; set; }
-        public GeoSpatialInformationResponse<ConservationUnitResponse>? ConservationUnits { get; set; }
-        public GeoSpatialInformationResponse<DeforestationResponse>? Deforestations { get; set; }
-        public GeoSpatialInformationResponse<EmbargoResponse>? Embargoes { get; set; }
-        public GeoSpatialInformationResponse<QuilombolaAreaResponse>? QuilombolaAreas { get; set; }
-        public GeoSpatialInformationResponse<SettlementResponse>? Settlements { get; set; }
+        public GeoSpatialIntersectInformationResponse<ConservationUnitResponse>? ConservationUnits { get; set; }
+        public GeoSpatialIntersectInformationResponse<DeforestationResponse>? Deforestations { get; set; }
+        public GeoSpatialIntersectInformationResponse<EmbargoResponse>? Embargoes { get; set; }
+        public GeoSpatialIntersectInformationResponse<QuilombolaAreaResponse>? QuilombolaAreas { get; set; }
+        public GeoSpatialIntersectInformationResponse<SettlementResponse>? Settlements { get; set; }
+        public GeoSpatialIntersectInformationResponse<UseCoverageResponse>? UseCoverage { get; set; }
     }
 }

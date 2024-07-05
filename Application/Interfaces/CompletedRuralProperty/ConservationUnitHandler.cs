@@ -17,7 +17,7 @@ namespace Application.Interfaces.CompletedRuralProperty
         {
         }
 
-        public override void Assign(RuralPropertyResponse ruralPropertyResponse, GeoSpatialInformationResponse<ConservationUnitResponse> intersectionResponse)
+        public override void Assign(RuralPropertyResponse ruralPropertyResponse, GeoSpatialIntersectInformationResponse<ConservationUnitResponse> intersectionResponse)
         {
             ruralPropertyResponse.ConservationUnits = intersectionResponse;
         }
