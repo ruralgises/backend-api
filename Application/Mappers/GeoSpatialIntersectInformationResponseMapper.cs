@@ -1,10 +1,6 @@
 ﻿using Application.DTOs.Response;
 using Application.DTOs.Response.Bases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Entities.BasesEntities;
 
 namespace Application.Mappers
 {
@@ -14,6 +10,14 @@ namespace Application.Mappers
         {
             return new GeoSpatialIntersectInformationResponse<T>(intersectionResponses, informationDatabaseResponse, intersectionResponses.Select(x => x.AreaIntersectHa).Sum());
         }
-            
+
+        public static GeoSpatialIntersectInformationResponse<Rp> ToInformationReponse<Rq, Rp>
+            (BaseMapper<Rq, Rp> baseMapper, IList<Rq> intersection, InformationDatabaseResponse informationDatabaseResponse)
+        where Rq : GeoSpatialBaseIntersection
+        where Rp : GeoSpatialBaseIntersectionResponse
+        {
+            var intersectionResponses = baseMapper.ToResponses(intersection);
+            return ToInformationReponse(intersectionResponses, informationDatabaseResponse);
+        }
     }
 }

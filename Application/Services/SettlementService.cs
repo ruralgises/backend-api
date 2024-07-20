@@ -2,14 +2,10 @@
 using Application.DTOs.Response.Bases;
 using Application.Interfaces.Services;
 using Application.Mappers;
+using Domain.Entities;
 using Domain.Enumerations;
 using Domain.Interfaces.Repositories;
 using NetTopologySuite.Geometries;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -18,21 +14,22 @@ namespace Application.Services
         private ISettlementsRepository _settlementRepository {  get; init; }
 
         private IInformationDatabaseService _informationDatabaseService { get; init; }
+        private BaseMapper<Settlement, SettlementResponse> Mapper { get; init; }
 
-        public SettlementService(ISettlementsRepository settlementService, IInformationDatabaseService informationDatabaseService)
+        public SettlementService(ISettlementsRepository settlementService, IInformationDatabaseService informationDatabaseService, BaseMapper<Settlement, SettlementResponse> mapper)
         {
             _settlementRepository = settlementService;
             _informationDatabaseService = informationDatabaseService;
+            Mapper = mapper;
         }
 
         public async Task<GeoSpatialIntersectInformationResponse<SettlementResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
         {
-            var settlement = _settlementRepository.GetByGeometry(geom, cancellationToken);
-            var settlementResponse = SettlementMapper.ToResponse(await settlement);
+            var settlementTask = _settlementRepository.GetByGeometry(geom, cancellationToken);
 
-            var information = _informationDatabaseService.GetByNameAsync(Entity.Settlement, cancellationToken);
+            var information = await _informationDatabaseService.GetByNameAsync(Entity.Settlement, cancellationToken);
 
-            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse(settlementResponse, await information);
+            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse< Settlement, SettlementResponse>(Mapper, await settlementTask, information);
         }
     }
 }

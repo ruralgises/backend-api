@@ -6,7 +6,7 @@ using Persistence.Context;
 
 namespace Persistence.Repositories.Bases
 {
-    public abstract class LocationsGeoSpatialBaseRepository<T> : ILocationsGeoSpatialBaseRepository<T> where T : LocationGeoSpatialBase
+    public abstract class LocationsGeoSpatialBaseRepository<T> : ILocationsGeoSpatialBaseRepository<T> where T : class, LocationGeoSpatialBase
     {
         protected readonly LocationDbContext _context;
 

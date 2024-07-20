@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.BasesEntities
 {
-    public abstract class LocationGeoSpatialBase : GeoSpatialBase
+    public interface LocationGeoSpatialBase : IGeoSpatialBase
     {
-        public string Code { get; private set; } = string.Empty;
-        public string Name { get; private set; } = string.Empty;
+        public string Code { get; init; }
+        public string Name { get; init; }
     }
 }

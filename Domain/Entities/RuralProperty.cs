@@ -1,11 +1,20 @@
 ﻿using Domain.Entities.BasesEntities;
+using NetTopologySuite.Geometries;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
     [Table("imoveis_rurais")]
-    public class RuralProperty : GeoSpatialBase
+    public class RuralProperty : IGeoSpatialBase
     {
+        [Key]
+        [Column("gid")]
+        public int Id { get; init; }
+
+        [Column("geom", TypeName = "geometry(Polygon, 4674)")]
+        public Geometry? Geom { get; init; }
+
         [Column("nom_tema")]
         public string ThemeName { get; private set; } = string.Empty;
 

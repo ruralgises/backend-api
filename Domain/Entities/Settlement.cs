@@ -13,6 +13,15 @@ namespace Domain.Entities
     [Table("assentamentos")]
     public class Settlement : GeoSpatialBaseIntersection
     {
+        [Key]
+        [Column("gid")]
+        public int Id { get; init; }
+
+        [Column("geom", TypeName = "geometry(Polygon, 4674)")]
+        public Geometry? Geom { get; init; }
+
+        public double AreaIntersectHa { get; init; }
+
         [Column("cd_sipra")]
         public string CodeSIPRA {  get; private set; } = string.Empty;
 

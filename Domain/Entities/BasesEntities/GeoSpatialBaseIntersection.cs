@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.BasesEntities
 {
-    public abstract class GeoSpatialBaseIntersection : GeoSpatialBase
+    public interface GeoSpatialBaseIntersection : IGeoSpatialBase
     {
-        public double AreaIntersectHa { get; set; }
+        public double AreaIntersectHa { get; init; }
     }
 }

@@ -10,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.ConfigureMapper(builder.Configuration);
 builder.Services.ConfigurePersistenceApp(builder.Configuration);
 builder.Services.ConfigureApp(builder.Configuration);
 

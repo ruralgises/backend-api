@@ -13,6 +13,15 @@ namespace Domain.Entities
     [Table("embargos")]
     public class Embargo : GeoSpatialBaseIntersection
     {
+        [Key]
+        [Column("gid")]
+        public int Id { get; init; }
+
+        [Column("geom", TypeName = "geometry(Polygon, 4674)")]
+        public Geometry? Geom { get; init; }
+
+        public double AreaIntersectHa { get; init; }
+
         [Column("numero_tad")]
         public string IdentificationEmbargoTerm { get; private set; } = string.Empty;
 

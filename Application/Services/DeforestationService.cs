@@ -2,14 +2,10 @@
 using Application.DTOs.Response.Bases;
 using Application.Interfaces.Services;
 using Application.Mappers;
+using Domain.Entities;
 using Domain.Enumerations;
 using Domain.Interfaces.Repositories;
 using NetTopologySuite.Geometries;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -17,20 +13,20 @@ namespace Application.Services
     {
         private IDeforestationsRepository _deforestationRepository { get; init; }
         private IInformationDatabaseService _informationDatabaseService { get; init; }
+        private BaseMapper<Deforestation, DeforestationResponse> Mapper { get; init; }
 
-        public DeforestationService(IDeforestationsRepository repository, IInformationDatabaseService informationDatabaseService)
+        public DeforestationService(IDeforestationsRepository repository, IInformationDatabaseService informationDatabaseService, BaseMapper<Deforestation, DeforestationResponse> mapper)
         {
             this._deforestationRepository = repository;
             this._informationDatabaseService = informationDatabaseService;
+            Mapper = mapper;
         }
         public async Task<GeoSpatialIntersectInformationResponse<DeforestationResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
         {
-            var desforestation = _deforestationRepository.GetByGeometry(geom, cancellationToken);
-            var desforestationResponse = DeforestationMapper.ToReponse(await desforestation);
-
+            var desforestationTask = _deforestationRepository.GetByGeometry(geom, cancellationToken);
             var informationResponse = await _informationDatabaseService.GetByNameAsync(Entity.Deforestation, cancellationToken);
 
-            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse(desforestationResponse, informationResponse);
+            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse<Deforestation, DeforestationResponse>(Mapper, await desforestationTask, informationResponse);
         }
     }
 }

@@ -14,6 +14,15 @@ namespace Domain.Entities
     [Table("area_de_quilombolas")]
     public class QuilombolaArea : GeoSpatialBaseIntersection
     {
+        [Key]
+        [Column("gid")]
+        public int Id { get; init; }
+
+        [Column("geom", TypeName = "geometry(Polygon, 4674)")]
+        public Geometry? Geom { get; init; }
+
+        public double AreaIntersectHa { get; init; }
+
         [Column("nr_process")]
         public string ProcessNumber { get; private set; } = string.Empty;
 

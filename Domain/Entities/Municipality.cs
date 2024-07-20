@@ -13,6 +13,15 @@ namespace Domain.Entities
     [Table("municipios")]
     public class Municipality : LocationGeoSpatialBase
     {
+        [Key]
+        [Column("gid")]
+        public int Id { get; init; }
+
+        [Column("geom", TypeName = "geometry(Polygon, 4674)")]
+        public Geometry? Geom { get; init; }
+        public string Code { get; init; }
+        public string Name { get; init; }
+
         protected Municipality() { }
     }
 }

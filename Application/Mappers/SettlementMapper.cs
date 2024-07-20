@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Application.Mappers
 {
-    public static class SettlementMapper
+    public class SettlementMapper : BaseMapper<Settlement, SettlementResponse>
     {
-        public static SettlementResponse ToResponse(Settlement settlement)
+        public override SettlementResponse ToResponse(Settlement settlement)
         {
             return new SettlementResponse()
             {
@@ -22,17 +22,6 @@ namespace Application.Mappers
                 NameProject = settlement.NameProject,
                 WayObtaining = settlement.WayObtaining
             };
-        }
-
-        public static IList<SettlementResponse> ToResponse(IList<Settlement> settlements)
-        {
-            var response = new List<SettlementResponse>();
-
-            foreach (var item in settlements) { 
-                response.Add(ToResponse(item));
-            }
-
-            return response;
         }
     }
 }

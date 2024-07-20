@@ -13,6 +13,15 @@ namespace Domain.Entities
     [Table("desmatamentos")]
     public class Deforestation : GeoSpatialBaseIntersection
     {
+        [Key]
+        [Column("gid")]
+        public int Id { get; init; }
+
+        [Column("geom", TypeName = "geometry(Polygon, 4674)")]
+        public Geometry? Geom { get; init; }
+
+        public double AreaIntersectHa { get; init; }
+
         [Column("year")]
         public int Year { get; private set; }
 

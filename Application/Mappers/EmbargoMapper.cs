@@ -1,16 +1,11 @@
 ﻿using Application.DTOs.Response;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Mappers
 {
-    public static class EmbargoMapper
+    public class EmbargoMapper : BaseMapper<Embargo, EmbargoResponse>
     {
-        public static EmbargoResponse ToResponse(Embargo embargo)
+        public override EmbargoResponse ToResponse(Embargo embargo)
         {
             return new EmbargoResponse()
             {
@@ -28,18 +23,6 @@ namespace Application.Mappers
                 Status = embargo.Status,
                 TotalEmbargoArea = embargo.TotalEmbargoArea
             };
-        }
-
-        public static IList<EmbargoResponse> ToResponse(IList<Embargo> embargoes)
-        {
-            var response = new List<EmbargoResponse>();
-
-            foreach (var item in embargoes)
-            {
-                response.Add(ToResponse(item));
-            }
-
-            return response;
         }
     }
 }

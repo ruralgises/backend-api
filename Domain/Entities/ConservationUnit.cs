@@ -1,11 +1,22 @@
 ﻿using Domain.Entities.BasesEntities;
+using NetTopologySuite.Geometries;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
     [Table("ucs")]
     public class ConservationUnit : GeoSpatialBaseIntersection
-    {   
+    {
+        [Key]
+        [Column("gid")]
+        public int Id { get; init; }
+
+        [Column("geom", TypeName = "geometry(Polygon, 4674)")]
+        public Geometry? Geom { get; init; }
+
+        public double AreaIntersectHa { get; init; }
+
         [Column("nome_uc")]
         public string UCName { get; private set; } = string.Empty;
 

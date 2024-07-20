@@ -1,15 +1,11 @@
-﻿using Application.DTOs.Response.Bases;
-using Application.DTOs.Response;
+﻿using Application.DTOs.Response;
+using Application.DTOs.Response.Bases;
+using Application.Interfaces.Services;
 using Application.Mappers;
+using Domain.Entities;
+using Domain.Enumerations;
 using Domain.Interfaces.Repositories;
 using NetTopologySuite.Geometries;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Interfaces.Services;
-using Domain.Enumerations;
 
 namespace Application.Services
 {
@@ -18,20 +14,22 @@ namespace Application.Services
         private IEmbargoesRepository _embargosRepository { get; init; }
         private IInformationDatabaseService _informationDatabaseService { get; init; }
 
-        public EmbargoService(IEmbargoesRepository repository, IInformationDatabaseService informationDatabaseService)
+        private BaseMapper<Embargo, EmbargoResponse> Mapper { get; init; }
+
+        public EmbargoService(BaseMapper<Embargo, EmbargoResponse> mapper, IEmbargoesRepository repository, IInformationDatabaseService informationDatabaseService)
         {
             this._embargosRepository = repository;
             this._informationDatabaseService = informationDatabaseService;
+            Mapper = mapper;
         }
 
         public async Task<GeoSpatialIntersectInformationResponse<EmbargoResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
         {
-            var embagoes = _embargosRepository.GetByGeometry(geom, cancellationToken);
-            var embargoesResponse = EmbargoMapper.ToResponse(await embagoes);
+            var embagoesTask = _embargosRepository.GetByGeometry(geom, cancellationToken);
 
             var informationResponse = await _informationDatabaseService.GetByNameAsync(Entity.Embargo, cancellationToken);
 
-            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse(embargoesResponse, informationResponse);
+            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse<Embargo, EmbargoResponse>(Mapper, await embagoesTask, informationResponse);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Application.DTOs.Response.Bases;
 using Application.Interfaces.Services;
 using Application.Mappers;
+using Domain.Entities;
 using Domain.Enumerations;
 using Domain.Interfaces.Repositories;
 using NetTopologySuite.Geometries;
@@ -13,16 +14,19 @@ namespace Application.Services
         private IUseCoverageRepository _useCoverageRepository {  get; init; }
         private IInformationDatabaseService _informationDatabaseService { get; init; }
 
-        public UseCoverageService(IUseCoverageRepository useCoverageRepository, IInformationDatabaseService informationDatabaseService)
+        private BaseMapper<UseCoverage, UseCoverageResponse> Mapper { get; init; }
+
+        public UseCoverageService(IUseCoverageRepository useCoverageRepository, IInformationDatabaseService informationDatabaseService, BaseMapper<UseCoverage, UseCoverageResponse> mapper)
         {
             _useCoverageRepository = useCoverageRepository;
             _informationDatabaseService = informationDatabaseService;
+            Mapper = mapper;
         }
 
         public async Task<GeoSpatialIntersectInformationResponse<UseCoverageResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
         {
             var useCoverageTask = _useCoverageRepository.GetByGeometry(geom, cancellationToken);
-            var useCoverageResponse = UseCoverageMapper.ToResponse(await useCoverageTask);
+            var useCoverageResponse = Mapper.ToResponses(await useCoverageTask);
 
             var groupedResults = useCoverageResponse
                 .GroupBy(r => new { r.Class, r.Name })

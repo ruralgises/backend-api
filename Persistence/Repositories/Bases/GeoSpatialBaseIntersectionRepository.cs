@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Persistence.Repositories.Bases
 {
-    public class GeoSpatialBaseIntersectionRepository<T> : IGeoSpatialBaseRepository<T> where T : GeoSpatialBaseIntersection
+    public class GeoSpatialBaseIntersectionRepository<T> : IGeoSpatialBaseRepository<T> where T : class, GeoSpatialBaseIntersection
     {
         private readonly DbContext _context;
 
