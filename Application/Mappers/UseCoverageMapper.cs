@@ -12,6 +12,7 @@ namespace Application.Mappers
                 Class = useCoverage.Class,
                 AreaIntersectHa = useCoverage.AreaIntersectHa,
                 Name = useCoverage.Name,
+                PercentageOfThePropertyArea = useCoverage.PercentageOfThePropertyArea,
             };
         }
     }

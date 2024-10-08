@@ -20,7 +20,7 @@ namespace Domain.Entities
 
         [Column("geom", TypeName = "geometry(Polygon, 4674)")]
         public Geometry? Geom { get; init; }
-
+        [Column("area_intersect_ha")]
         public double AreaIntersectHa { get; init; }
 
         [Column("nr_process")]
@@ -44,6 +44,8 @@ namespace Domain.Entities
         [Column("responsave")]
         public string Responsible { get; private set; } = string.Empty;
 
+        [Column("percentage_of_the_property_area")]
+        public double PercentageOfThePropertyArea { get; init; }
         protected QuilombolaArea() { }
     }
 }

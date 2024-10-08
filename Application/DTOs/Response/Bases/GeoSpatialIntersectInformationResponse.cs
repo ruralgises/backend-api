@@ -12,13 +12,17 @@ namespace Application.DTOs.Response.Bases
         public GeoSpatialIntersectInformationResponse(
             IList<T> values, 
             InformationDatabaseResponse informationDatabase, 
-            double areaIntersectTotalHa
+            double areaIntersectTotalHa,
+            double percentageOfThePropertyArea
         ) 
             : base(values, informationDatabase)
         {
             AreaIntersectTotalHa = areaIntersectTotalHa;
+            PercentageOfThePropertyArea = percentageOfThePropertyArea;
         }
 
         public double AreaIntersectTotalHa { get; init; }
+        public double PercentageOfThePropertyArea { get; init; }
+
     }
 }

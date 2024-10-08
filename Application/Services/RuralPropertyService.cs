@@ -62,7 +62,7 @@ namespace Application.Services
 
             //create RuralPropertyResponse
             var ruralPropertyResponse = RuralPropertyMapper.ToResponse(ruralProperty);
-            ruralPropertyResponse.InformationDatabase = await _informationDatabaseService.GetByNameAsync(Entity.RuralProperty, cancellationToken);
+            ruralPropertyResponse.InformationDatabase = await _informationDatabaseService.GetByNameAsync(Domain.Enumerations.InformationDatabaseType.RuralProperty, cancellationToken);
 
             //assigning missing data
             ruralPropertyResponse.Location = await locationTask;

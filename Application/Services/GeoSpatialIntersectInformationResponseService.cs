@@ -1,14 +1,19 @@
 ﻿using Application.DTOs.Response;
 using Application.DTOs.Response.Bases;
+using Application.Mappers;
 using Domain.Entities.BasesEntities;
 
-namespace Application.Mappers
+namespace Application.Services
 {
-    public static class GeoSpatialIntersectInformationResponseMapper
+    public static class GeoSpatialIntersectInformationResponseService
     {
         public static GeoSpatialIntersectInformationResponse<T> ToInformationReponse<T>(IList<T> intersectionResponses, InformationDatabaseResponse informationDatabaseResponse) where T : GeoSpatialBaseIntersectionResponse
         {
-            return new GeoSpatialIntersectInformationResponse<T>(intersectionResponses, informationDatabaseResponse, intersectionResponses.Select(x => x.AreaIntersectHa).Sum());
+            return new GeoSpatialIntersectInformationResponse<T>(
+                intersectionResponses, 
+                informationDatabaseResponse, 
+                intersectionResponses.Select(x => x.AreaIntersectHa).Sum(),
+                intersectionResponses.Select(x => x.PercentageOfThePropertyArea).Sum());
         }
 
         public static GeoSpatialIntersectInformationResponse<Rp> ToInformationReponse<Rq, Rp>

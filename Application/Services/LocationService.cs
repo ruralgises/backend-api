@@ -20,7 +20,7 @@ namespace Application.Services
         public async Task<LocationResponse> GetByMunipalityName(string MunicipalyName, CancellationToken cancellationToken)
         {
             var locationTask = _locationsRepository.GetByMunipalityName(MunicipalyName, cancellationToken);
-            var informationTask = _informationDatabaseService.GetByNameAsync(Entity.Location, cancellationToken);
+            var informationTask = _informationDatabaseService.GetByNameAsync(InformationDatabaseType.Location, cancellationToken);
 
             return LocationMapper.ToResponse(await locationTask, await informationTask);
         }

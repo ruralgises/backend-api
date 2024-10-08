@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Enumerations
 {
-    public enum Entity
+    public enum InformationDatabaseType
     {
         RuralProperty,
         Location,
@@ -15,6 +15,7 @@ namespace Domain.Enumerations
         Embargo,
         QuilombolaArea,
         Settlement,
-        UseCoverage
+        UseCoverage,
+        Alert
     }
 }

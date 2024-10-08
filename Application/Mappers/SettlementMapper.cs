@@ -20,7 +20,8 @@ namespace Application.Mappers
                 DateObtaining = settlement.DateObtaining,
                 FamilyNumber = settlement.FamilyNumber,
                 NameProject = settlement.NameProject,
-                WayObtaining = settlement.WayObtaining
+                WayObtaining = settlement.WayObtaining,
+                PercentageOfThePropertyArea = settlement.PercentageOfThePropertyArea
             };
         }
     }

@@ -10,6 +10,6 @@ namespace Application.Interfaces.Services
 {
     public interface IInformationDatabaseService
     {
-        Task<InformationDatabaseResponse> GetByNameAsync(Entity entity, CancellationToken cancellationToken);
+        Task<InformationDatabaseResponse> GetByNameAsync(InformationDatabaseType entity, CancellationToken cancellationToken);
     }
 }

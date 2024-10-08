@@ -22,7 +22,7 @@ namespace Application.Services
         public async Task<GeoSpatialInformationResponse<RuralPropertyMinimumResponse>> GetByCode(GetByCodeRuralPropretiesMinimumRequest request, CancellationToken cancellationToken)
         {
             var r = await _Repository.GetByCode(request.Code, request.Skip, request.Take, cancellationToken);
-            var information = _informationDatabaseService.GetByNameAsync(Entity.RuralProperty, cancellationToken);
+            var information = _informationDatabaseService.GetByNameAsync(InformationDatabaseType.RuralProperty, cancellationToken);
 
             return new GeoSpatialInformationResponse<RuralPropertyMinimumResponse>(RuralPropertyMinimoMapper.ToResponse(r), await information);
         }
@@ -30,7 +30,7 @@ namespace Application.Services
         public async Task<GeoSpatialInformationResponse<RuralPropertyMinimumResponse>> GetByCoordinate(GetByCoordinateRuralPropretiesMinimumRequest request, CancellationToken cancellationToken)
         {
             var r = await _Repository.GetByCoordinate(request.Coordinate, request.Skip, request.Take, cancellationToken);
-            var information = _informationDatabaseService.GetByNameAsync(Entity.RuralProperty, cancellationToken);
+            var information = _informationDatabaseService.GetByNameAsync(InformationDatabaseType.RuralProperty, cancellationToken);
 
             return new GeoSpatialInformationResponse<RuralPropertyMinimumResponse>(RuralPropertyMinimoMapper.ToResponse(r), await information);
         }

@@ -24,9 +24,9 @@ namespace Application.Services
         public async Task<GeoSpatialIntersectInformationResponse<DeforestationResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
         {
             var desforestationTask = _deforestationRepository.GetByGeometry(geom, cancellationToken);
-            var informationResponse = await _informationDatabaseService.GetByNameAsync(Entity.Deforestation, cancellationToken);
+            var informationResponse = await _informationDatabaseService.GetByNameAsync(Domain.Enumerations.InformationDatabaseType.Deforestation, cancellationToken);
 
-            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse<Deforestation, DeforestationResponse>(Mapper, await desforestationTask, informationResponse);
+            return GeoSpatialIntersectInformationResponseService.ToInformationReponse<Deforestation, DeforestationResponse>(Mapper, await desforestationTask, informationResponse);
         }
     }
 }

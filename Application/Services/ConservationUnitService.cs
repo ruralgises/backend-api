@@ -27,9 +27,9 @@ namespace Application.Services
         {
             var conservationUnitsTask = _conservationUnitRepository.GetByGeometry(geom, cancellationToken);
 
-            var informationResponse = await _informationDatabaseService.GetByNameAsync(Entity.ConservationUnit, cancellationToken);
+            var informationResponse = await _informationDatabaseService.GetByNameAsync(Domain.Enumerations.InformationDatabaseType.ConservationUnit, cancellationToken);
 
-            var r = GeoSpatialIntersectInformationResponseMapper.ToInformationReponse<ConservationUnit, ConservationUnitResponse>(Mapper, await conservationUnitsTask, informationResponse);
+            var r = GeoSpatialIntersectInformationResponseService.ToInformationReponse<ConservationUnit, ConservationUnitResponse>(Mapper, await conservationUnitsTask, informationResponse);
 
             return r;
         }

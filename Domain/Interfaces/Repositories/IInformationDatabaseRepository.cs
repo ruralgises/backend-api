@@ -10,6 +10,6 @@ namespace Domain.Interfaces.Repositories
 {
     public interface IInformationDatabaseRepository
     {
-         Task<InformationDatabase?> GetInfo(Entity entity, CancellationToken cancellationToken);
+         Task<Entities.InformationDatabase?> GetInfo(Enumerations.InformationDatabaseType entity, CancellationToken cancellationToken);
     }
 }

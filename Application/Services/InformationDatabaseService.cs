@@ -20,7 +20,7 @@ namespace Application.Services
             _repository = repository;
         }
 
-        public async Task<InformationDatabaseResponse> GetByNameAsync(Entity entity, CancellationToken cancellationToken)
+        public async Task<InformationDatabaseResponse> GetByNameAsync(InformationDatabaseType entity, CancellationToken cancellationToken)
         {
             var result =  await _repository.GetInfo(entity, cancellationToken);
 

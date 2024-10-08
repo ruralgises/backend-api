@@ -25,9 +25,9 @@ namespace Application.Services
         public async Task<GeoSpatialIntersectInformationResponse<QuilombolaAreaResponse>> GetByGeometry(Geometry geom, CancellationToken cancellationToken)
         {
             var quilombolaAreaTask = _quilombolaAreasRepository.GetByGeometry(geom, cancellationToken);
-            var information = await _informationDatabaseService.GetByNameAsync(Entity.QuilombolaArea, cancellationToken);
+            var information = await _informationDatabaseService.GetByNameAsync(Domain.Enumerations.InformationDatabaseType.QuilombolaArea, cancellationToken);
 
-            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse<QuilombolaArea, QuilombolaAreaResponse>(Mapper, await quilombolaAreaTask, information);
+            return GeoSpatialIntersectInformationResponseService.ToInformationReponse<QuilombolaArea, QuilombolaAreaResponse>(Mapper, await quilombolaAreaTask, information);
         }
     }
 }

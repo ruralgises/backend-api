@@ -27,9 +27,9 @@ namespace Application.Services
         {
             var embagoesTask = _embargosRepository.GetByGeometry(geom, cancellationToken);
 
-            var informationResponse = await _informationDatabaseService.GetByNameAsync(Entity.Embargo, cancellationToken);
+            var informationResponse = await _informationDatabaseService.GetByNameAsync(Domain.Enumerations.InformationDatabaseType.Embargo, cancellationToken);
 
-            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse<Embargo, EmbargoResponse>(Mapper, await embagoesTask, informationResponse);
+            return GeoSpatialIntersectInformationResponseService.ToInformationReponse<Embargo, EmbargoResponse>(Mapper, await embagoesTask, informationResponse);
         }
     }
 }

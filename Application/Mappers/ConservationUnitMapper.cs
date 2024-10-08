@@ -17,7 +17,8 @@ namespace Application.Mappers
                 Group = conservationUnit.Group,
                 Realm = conservationUnit.Realm,
                 ManagingBody = conservationUnit.ManagingBody,
-                YearCreation = conservationUnit.YearCreation
+                YearCreation = conservationUnit.YearCreation,
+                PercentageOfThePropertyArea = conservationUnit.PercentageOfThePropertyArea
             };
         }
     }

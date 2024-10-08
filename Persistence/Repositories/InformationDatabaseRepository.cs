@@ -21,7 +21,7 @@ namespace Persistence.Repositories
             _context = context;
         }
 
-        public async Task<InformationDatabase?> GetInfo(Entity entity, CancellationToken cancellationToken)
+        public async Task<Domain.Entities.InformationDatabase?> GetInfo(Domain.Enumerations.InformationDatabaseType entity, CancellationToken cancellationToken)
         {
             await _semaphore.WaitAsync(cancellationToken); // Aguarda até obter o semáforo
             try

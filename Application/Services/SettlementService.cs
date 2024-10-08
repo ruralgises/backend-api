@@ -27,9 +27,9 @@ namespace Application.Services
         {
             var settlementTask = _settlementRepository.GetByGeometry(geom, cancellationToken);
 
-            var information = await _informationDatabaseService.GetByNameAsync(Entity.Settlement, cancellationToken);
+            var information = await _informationDatabaseService.GetByNameAsync(Domain.Enumerations.InformationDatabaseType.Settlement, cancellationToken);
 
-            return GeoSpatialIntersectInformationResponseMapper.ToInformationReponse< Settlement, SettlementResponse>(Mapper, await settlementTask, information);
+            return GeoSpatialIntersectInformationResponseService.ToInformationReponse< Settlement, SettlementResponse>(Mapper, await settlementTask, information);
         }
     }
 }

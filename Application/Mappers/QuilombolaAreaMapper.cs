@@ -17,6 +17,7 @@ namespace Application.Mappers
                 ProcessNumber = quilombolaArea.ProcessNumber,
                 Realm = quilombolaArea.Realm,
                 Responsible = quilombolaArea.Responsible,
+                PercentageOfThePropertyArea = quilombolaArea.PercentageOfThePropertyArea
             };
         }
     }

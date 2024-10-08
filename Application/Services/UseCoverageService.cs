@@ -37,9 +37,9 @@ namespace Application.Services
                     AreaIntersectHa = g.Sum(r => r.AreaIntersectHa)
                 }).ToList();
 
-            var information = await _informationDatabaseService.GetByNameAsync(Entity.UseCoverage, cancellationToken);
+            var information = await _informationDatabaseService.GetByNameAsync(Domain.Enumerations.InformationDatabaseType.UseCoverage, cancellationToken);
 
-            var r = GeoSpatialIntersectInformationResponseMapper.ToInformationReponse<UseCoverageResponse>(groupedResults.ToList(), information);
+            var r = GeoSpatialIntersectInformationResponseService.ToInformationReponse<UseCoverageResponse>(groupedResults.ToList(), information);
 
             return r;
         }

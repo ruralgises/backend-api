@@ -28,16 +28,25 @@ namespace Persistence.Repositories.Bases
 
             var results = await _context.Set<T>()
                 .FromSqlRaw($@"
-                SELECT 
-                    *,
-                    ST_Area(ST_Intersection(ST_Transform(geom, 32723), ST_Transform(ST_GeomFromText('{wktGeometry}', 4674), 32723))) / 10000 AS AreaIntersectHa
-                FROM 
-                    {tableName}
-                WHERE 
-                    ST_Intersects(geom, ST_GeomFromText('{wktGeometry}', 4674))")
+                    WITH area_data AS (
+                        SELECT 
+                            *,
+                            Round((ST_Area(ST_Intersection(ST_Transform(geom, 32723), ST_Transform(ST_GeomFromText('{wktGeometry}', 4674), 32723))) / 10000)::numeric, 2) AS area_intersect_ha
+                        FROM 
+                            {tableName}
+                        WHERE 
+                            ST_Intersects(geom, ST_GeomFromText('{wktGeometry}', 4674))
+                    )
+                    SELECT 
+                        *,
+                        Round((area_intersect_ha / (ST_Area(ST_Transform(ST_GeomFromText('{wktGeometry}', 4674), 32723)) / 10000 )* 100)::numeric, 2) AS percentage_of_the_property_area
+                    FROM 
+                        area_data;")
                 .ToListAsync(cancellationToken);
 
-            return results.ToList();
+            var r = results.ToList();
+
+            return r;
         }
 
         private string GetTableName<TEntity>() where TEntity : class

@@ -21,7 +21,8 @@ namespace Application.Mappers
                 NameEmbargoed = embargo.NameEmbargoed,
                 RegistrationDate = embargo.RegistrationDate,
                 Status = embargo.Status,
-                TotalEmbargoArea = embargo.TotalEmbargoArea
+                TotalEmbargoArea = embargo.TotalEmbargoArea,
+                PercentageOfThePropertyArea = embargo.PercentageOfThePropertyArea
             };
         }
     }

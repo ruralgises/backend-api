@@ -10,5 +10,6 @@ namespace Domain.Entities.BasesEntities
     public interface GeoSpatialBaseIntersection : IGeoSpatialBase
     {
         public double AreaIntersectHa { get; init; }
+        public double PercentageOfThePropertyArea { get; init; }
     }
 }
