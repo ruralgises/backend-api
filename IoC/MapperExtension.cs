@@ -10,6 +10,7 @@ namespace IoC
     {
         public static void ConfigureMapper(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddSingleton<BaseMapper<Alert, AlertResponse>, AlertMapper>();
             services.AddSingleton<BaseMapper<ConservationUnit, ConservationUnitResponse>, ConservationUnitMapper>();
             services.AddSingleton<BaseMapper<Deforestation, DeforestationResponse>, DeforestationMapper>();
             services.AddSingleton<BaseMapper<Embargo, EmbargoResponse>, EmbargoMapper>();

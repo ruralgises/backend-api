@@ -25,5 +25,6 @@ namespace Application.DTOs.Response
         public GeoSpatialIntersectInformationResponse<QuilombolaAreaResponse>? QuilombolaAreas { get; set; }
         public GeoSpatialIntersectInformationResponse<SettlementResponse>? Settlements { get; set; }
         public GeoSpatialIntersectInformationResponse<UseCoverageResponse>? UseCoverage { get; set; }
+        public GeoSpatialIntersectInformationResponse<AlertResponse>? Alert { get; set; }
     }
 }

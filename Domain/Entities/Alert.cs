@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    [Table("alerta")]
+    [Table("alertas")]
 
     public class Alert : GeoSpatialBaseIntersection
     {
@@ -29,6 +29,10 @@ namespace Domain.Entities
 
         [Column("datadetec")]
         public DateOnly DetectDate { get; init; }
+
+        [Column("dtpubli")]
+        public DateOnly PublicationDate { get; init; }
+
         [Column("vpressao")]
         public string VectorPressure { get; init; }
         [Column("fonte")]

@@ -19,6 +19,7 @@ namespace Application.Services
         private ISettlementService _SettlementService { get; init; }
         private IInformationDatabaseService _informationDatabaseService { get; set; }
         private IUseCoverageService _useCoverageService { get; set; }
+        private IAlertService _alertService { get; set; }
 
         public RuralPropertyService(
             IRuralPropertiesRepository ruralPropertiesRepository,
@@ -29,7 +30,8 @@ namespace Application.Services
             IQuilombolaAreaService quilombolaAreaService,
             ISettlementService settlementService,
             IInformationDatabaseService informationDatabaseService,
-            IUseCoverageService useCoverageService)
+            IUseCoverageService useCoverageService,
+            IAlertService alertService)
         {
             _Repository = ruralPropertiesRepository;
             _LocationService = locationService;
@@ -40,6 +42,7 @@ namespace Application.Services
             _SettlementService = settlementService;
             _informationDatabaseService = informationDatabaseService;
             _useCoverageService = useCoverageService;
+            _alertService = alertService;
         }
 
         public async Task<RuralPropertyResponse> GetByCode(GetByCodeRuralPropretiesRequest request, CancellationToken cancellationToken = default)
@@ -59,6 +62,7 @@ namespace Application.Services
             var quilombolaAreaTask = _QuilombolaAreaService.GetByGeometry(ruralProperty.Geom, cancellationToken);
             var settlementTask = _SettlementService.GetByGeometry(ruralProperty.Geom, cancellationToken);
             var useCoverageTask = _useCoverageService.GetByGeometry(ruralProperty.Geom, cancellationToken);
+            var alertTask = _alertService.GetByGeometry(ruralProperty.Geom, cancellationToken);
 
             //create RuralPropertyResponse
             var ruralPropertyResponse = RuralPropertyMapper.ToResponse(ruralProperty);
@@ -72,6 +76,7 @@ namespace Application.Services
             ruralPropertyResponse.QuilombolaAreas = await quilombolaAreaTask;
             ruralPropertyResponse.Settlements = await settlementTask;
             ruralPropertyResponse.UseCoverage = await useCoverageTask;
+            ruralPropertyResponse.Alert = await alertTask;
 
             return ruralPropertyResponse;
         }

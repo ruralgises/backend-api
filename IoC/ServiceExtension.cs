@@ -11,6 +11,7 @@ namespace IoC
         {
             services.AddTransient<IInformationDatabaseService, InformationDatabaseService>();
 
+            services.AddTransient<IAlertService, AlertService>();
             services.AddTransient<IUseCoverageService, UseCoverageService>();
             services.AddTransient<IConservationUnitService, ConservationUnitService>();
             services.AddTransient<IDeforestationService, DeforestationService>();
