@@ -54,7 +54,7 @@ namespace Persistence.Repositories
             return await query.ToListAsync(cancellationToken);
         }
 
-        public async Task<RuralProperty> GetByCode(string code, CancellationToken cancellationToken)
+        public async Task<RuralProperty?> GetByCode(string code, CancellationToken cancellationToken)
         {
             var query = _context.RuralProperties.Where(item => item.Code == code);
 

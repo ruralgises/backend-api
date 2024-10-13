@@ -12,6 +12,6 @@ namespace Domain.Interfaces.Repositories
     {
         Task<IList<RuralProperty>> GetByCode(string code, int? Skip, int? Take, CancellationToken cancellationToken);
         Task<IList<RuralProperty>> GetByCoordinate(Coordinate coordinate, int? Skip, int? Take, CancellationToken cancellationToken);
-        public Task<RuralProperty> GetByCode(string code, CancellationToken cancellationToken);
+        public Task<RuralProperty?> GetByCode(string code, CancellationToken cancellationToken);
     }
 }

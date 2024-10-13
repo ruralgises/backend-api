@@ -1,11 +1,12 @@
+using Application.DTOs.Response;
 using Application.Services.ReportPDF.QuestPDFExtensions;
 using QuestPDF.Fluent;
 
 namespace Application.Services.ReportPDF.ReportHandler;
 
-public class IBAMAHandler : BaseHandler
+public class IBAMAHandler : BaseHandler, IReportHandler
 {
-    public override void Handler(ColumnDescriptor column)
+    public override void Handler(ColumnDescriptor column, RuralPropertyResponse ruralProperty)
     {
         column
            .Item()
@@ -94,6 +95,6 @@ public class IBAMAHandler : BaseHandler
                .TextInfo("Descrição", "Vender, expor à venda, exportar ou adquirir, guardar, ter em cativeiro ou depósito, utilizar ou transportar ovos, larvas ou espécimes da fauna silvestre, nativa ou em rota migratória, bem como produtos e objetos dela oriundos, provenientes de criadou");
            });
 
-        this._nextHandler?.Handler(column);
+        this._nextHandler?.Handler(column, ruralProperty);
     }
 }

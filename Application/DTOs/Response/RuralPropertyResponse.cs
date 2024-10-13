@@ -26,5 +26,6 @@ namespace Application.DTOs.Response
         public GeoSpatialIntersectInformationResponse<SettlementResponse>? Settlements { get; set; }
         public GeoSpatialIntersectInformationResponse<UseCoverageResponse>? UseCoverage { get; set; }
         public GeoSpatialIntersectInformationResponse<AlertResponse>? Alert { get; set; }
+        public GeoSpatialIntersectInformationResponse<IndigenouslandsResponse>? Indigenousland { get; set; }
     }
 }

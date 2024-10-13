@@ -20,6 +20,7 @@ namespace Application.Services
         private IInformationDatabaseService _informationDatabaseService { get; set; }
         private IUseCoverageService _useCoverageService { get; set; }
         private IAlertService _alertService { get; set; }
+        private IIndigenouslandsService _indigenouslandsService { get; set; }
 
         public RuralPropertyService(
             IRuralPropertiesRepository ruralPropertiesRepository,
@@ -31,7 +32,8 @@ namespace Application.Services
             ISettlementService settlementService,
             IInformationDatabaseService informationDatabaseService,
             IUseCoverageService useCoverageService,
-            IAlertService alertService)
+            IAlertService alertService,
+            IIndigenouslandsService indigenouslandsService)
         {
             _Repository = ruralPropertiesRepository;
             _LocationService = locationService;
@@ -43,11 +45,15 @@ namespace Application.Services
             _informationDatabaseService = informationDatabaseService;
             _useCoverageService = useCoverageService;
             _alertService = alertService;
+            _indigenouslandsService = indigenouslandsService;
         }
 
-        public async Task<RuralPropertyResponse> GetByCode(GetByCodeRuralPropretiesRequest request, CancellationToken cancellationToken = default)
+        public async Task<RuralPropertyResponse?> GetByCode(GetByCodeRuralPropretiesRequest request, CancellationToken cancellationToken = default)
         {
             var ruralProperties =  await _Repository.GetByCode(request.Code, cancellationToken);
+
+            if(ruralProperties == null)
+                return null;
 
             return await CompletedRuralProperty(ruralProperties, cancellationToken);
         }
@@ -63,6 +69,7 @@ namespace Application.Services
             var settlementTask = _SettlementService.GetByGeometry(ruralProperty.Geom, cancellationToken);
             var useCoverageTask = _useCoverageService.GetByGeometry(ruralProperty.Geom, cancellationToken);
             var alertTask = _alertService.GetByGeometry(ruralProperty.Geom, cancellationToken);
+            var indigenouslandTask = _indigenouslandsService.GetByGeometry(ruralProperty.Geom, cancellationToken);
 
             //create RuralPropertyResponse
             var ruralPropertyResponse = RuralPropertyMapper.ToResponse(ruralProperty);
@@ -77,6 +84,7 @@ namespace Application.Services
             ruralPropertyResponse.Settlements = await settlementTask;
             ruralPropertyResponse.UseCoverage = await useCoverageTask;
             ruralPropertyResponse.Alert = await alertTask;
+            ruralPropertyResponse.Indigenousland = await indigenouslandTask;
 
             return ruralPropertyResponse;
         }

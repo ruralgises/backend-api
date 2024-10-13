@@ -1,5 +1,7 @@
 ﻿using Application.Interfaces.Services;
 using Application.Services;
+using Application.Services.ReportPDF;
+using Application.Services.ReportPDF.ReportHandlerFactories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +14,7 @@ namespace IoC
             services.AddTransient<IInformationDatabaseService, InformationDatabaseService>();
 
             services.AddTransient<IAlertService, AlertService>();
+            services.AddTransient<IIndigenouslandsService, IndigenouslandsService>();
             services.AddTransient<IUseCoverageService, UseCoverageService>();
             services.AddTransient<IConservationUnitService, ConservationUnitService>();
             services.AddTransient<IDeforestationService, DeforestationService>();
@@ -22,6 +25,14 @@ namespace IoC
             services.AddTransient<IRuralPropertyMinimumService, RuralPropertyMinimumService>();
             
             services.AddTransient<IRuralPropertyService, RuralPropertyService>();
+
+            services.AddTransient<IReportHandlerFactory, ReportHandlerFactory>();
+            services.AddTransient<IReportPDF, ReportPDF>(provider =>
+            {
+                var factory = provider.GetRequiredService<IReportHandlerFactory>();
+                return new ReportPDF(factory.Create());
+            });
+            services.AddTransient<IReportPDFService, ReportPDFService>();
         }
     }
 }

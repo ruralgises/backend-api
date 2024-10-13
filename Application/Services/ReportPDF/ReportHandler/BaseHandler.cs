@@ -1,3 +1,4 @@
+using Application.DTOs.Response;
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 
@@ -7,7 +8,7 @@ public abstract class BaseHandler : IReportHandler
 {
     protected IReportHandler? _nextHandler;
 
-    public abstract void Handler(ColumnDescriptor container);
+    public abstract void Handler(ColumnDescriptor container, RuralPropertyResponse ruralProperty);
 
     public void SetNext(IReportHandler reportHandler)
     {

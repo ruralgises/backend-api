@@ -1,11 +1,12 @@
+using Application.DTOs.Response;
 using Application.Services.ReportPDF.QuestPDFExtensions;
 using QuestPDF.Fluent;
 
 namespace Application.Services.ReportPDF.ReportHandler;
 
-public class INPEHandler : BaseHandler
+public class INPEHandler : BaseHandler, IReportHandler
 {
-    public override void Handler(ColumnDescriptor column)
+    public override void Handler(ColumnDescriptor column, RuralPropertyResponse ruralProperty)
     {
         column
           .Item()
@@ -30,6 +31,6 @@ public class INPEHandler : BaseHandler
               });
           });
 
-        this._nextHandler?.Handler(column);
+        this._nextHandler?.Handler(column, ruralProperty);
     }
 }

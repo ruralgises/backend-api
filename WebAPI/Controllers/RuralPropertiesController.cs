@@ -10,18 +10,38 @@ namespace WebAPI.Controllers
     public class RuralPropertiesController : ControllerBase
     {
         private IRuralPropertyService _RuralPropertyService { get; set; }
+        private IReportPDFService _ReportPDFService { get; set; }
 
-        public RuralPropertiesController(IRuralPropertyService ruralPropertyMinimumService)
+        public RuralPropertiesController(IRuralPropertyService ruralPropertyMinimumService, IReportPDFService reportPDFService)
         {
             _RuralPropertyService = ruralPropertyMinimumService;
+            _ReportPDFService = reportPDFService;
         }
 
         [HttpGet("bycode")]
-        public async Task<ActionResult<IList<RuralPropertyMinimumResponse>>> GetByCode([FromQuery] GetByCodeRuralPropretiesRequest request, CancellationToken cancellationToken = default)
+        public async Task<ActionResult> GetByCode([FromQuery] GetByCodeRuralPropretiesRequest request, CancellationToken cancellationToken = default)
         {
             var r = await _RuralPropertyService.GetByCode(request, cancellationToken);
 
+            if (r == null)
+            {
+                return NotFound();
+            }
+
             return Ok(r);
+        }
+
+        [HttpGet("report")]
+        public async Task<IActionResult> GetReport([FromQuery] GetByCodeRuralPropretiesRequest request, CancellationToken cancellationToken = default)
+        {
+            var pdf = await _ReportPDFService.getReportPDF(request, cancellationToken);
+
+            if (pdf == null)
+            {
+                return NotFound();
+            }
+
+            return File(pdf, "application/pdf", $"report-{request.Code}.pdf");
         }
     }
 }

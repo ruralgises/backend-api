@@ -16,6 +16,7 @@ namespace Domain.Enumerations
         QuilombolaArea,
         Settlement,
         UseCoverage,
-        Alert
+        Alert,
+        Indigenouslands
     }
 }

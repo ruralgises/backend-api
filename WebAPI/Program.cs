@@ -1,5 +1,6 @@
 using IoC;
 using Persistence;
+using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//license QuestPDF
+QuestPDF.Settings.License = LicenseType.Community;
 
 app.UseHttpsRedirection();
 

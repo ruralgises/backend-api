@@ -1,11 +1,12 @@
-﻿using Application.Services.ReportPDF.ReportHandler;
+﻿using Application.DTOs.Response;
+using Application.Services.ReportPDF.ReportHandler;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 
 namespace Application.Services.ReportPDF;
 
-public class ReportPDF
+public class ReportPDF : IReportPDF
 {
     private IReportHandler? _reportHandler;
 
@@ -13,9 +14,9 @@ public class ReportPDF
     {
         _reportHandler = reportHandler;
     }
-    public Document Compose()
+    public byte[] Compose(RuralPropertyResponse ruralProperty)
     {
-        Document doc = Document.Create(container =>
+        Document document = Document.Create(container =>
         {
             container.Page(
             page =>
@@ -27,13 +28,15 @@ public class ReportPDF
                 page.Content().Column(
                     column =>
                     {
-                        this._reportHandler?.Handler(column);
+                        this._reportHandler?.Handler(column, ruralProperty);
                     });
             }
         );
         }
         );
 
-        return doc;
-    }
+        var pdf = document.GeneratePdf();
+
+        return pdf;
+    } 
 }
