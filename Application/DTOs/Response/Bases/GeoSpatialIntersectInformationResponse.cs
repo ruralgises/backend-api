@@ -13,16 +13,16 @@ namespace Application.DTOs.Response.Bases
             IList<T> values, 
             InformationDatabaseResponse informationDatabase, 
             double areaIntersectTotalHa,
-            double percentageOfThePropertyArea
+            double percentageOfThePropertyAreaTotal
         ) 
             : base(values, informationDatabase)
         {
             AreaIntersectTotalHa = areaIntersectTotalHa;
-            PercentageOfThePropertyArea = percentageOfThePropertyArea;
+            PercentageOfThePropertyAreaTotal = percentageOfThePropertyAreaTotal;
         }
 
         public double AreaIntersectTotalHa { get; init; }
-        public double PercentageOfThePropertyArea { get; init; }
+        public double PercentageOfThePropertyAreaTotal { get; init; }
 
     }
 }

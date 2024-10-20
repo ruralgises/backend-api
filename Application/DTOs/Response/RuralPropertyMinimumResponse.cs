@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetTopologySuite.Geometries;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -16,5 +17,7 @@ namespace Application.DTOs.Response
         public string Type { get; set; } = string.Empty;
         public string Condition { get; set; } = string.Empty;
         public string Municipio { get; set; } = string.Empty;
+
+        public Geometry? Geom { get; set; }
     }
 }

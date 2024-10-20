@@ -20,6 +20,9 @@ namespace Domain.Entities
         [Column("percentage_of_the_property_area")]
         public double PercentageOfThePropertyArea { get; init; }
 
+        [Column("terrai_cod")]
+        public int LandCode { get; init; }
+
         [Column("terrai_nom")]
         public string LandName { get; init; }
 

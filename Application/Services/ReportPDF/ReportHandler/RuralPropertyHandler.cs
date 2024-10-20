@@ -5,22 +5,22 @@ using QuestPDF.Infrastructure;
 
 namespace Application.Services.ReportPDF.ReportHandler;
 
-public class SICARHandler : BaseHandler, IReportHandler
+public class RuralPropertyHandler : BaseHandler, IReportHandler
 {
     public override void Handler(ColumnDescriptor column, RuralPropertyResponse ruralProperty)
     {
         column
         .Item()
             .PaddingBottom(5)
+            .BorderBottom(1)
             .Column(column =>
             {
                 column
-                .Item()
-                .TextTitle("SICAR - IMÓVEL RURAL");
+                .InformationDataBase(ruralProperty.InformationDatabase);
 
                 column
                 .Item()
-                .TextInfo("Código do Imóvel", "ES-3201100-D0FC04294D724C49889D805DB29BD3FF");
+                .TextInfo("Código do Imóvel", ruralProperty.Code);
 
                 column
                 .Item()
@@ -28,7 +28,7 @@ public class SICARHandler : BaseHandler, IReportHandler
                 {
                     row
                     .RelativeItem(4)
-                    .TextInfo("Situação do cadastro", "Cancelado por decisao administrativa");
+                    .TextInfo("Situação do cadastro", ruralProperty.Condition);
 
                     row.RelativeItem(2)
                     .AlignRight()
@@ -40,11 +40,11 @@ public class SICARHandler : BaseHandler, IReportHandler
                 .Row(row =>
                 {
                     row.RelativeItem(4)
-                    .TextInfo("Nome do tema", "Área de Preservação Permanente");
+                    .TextInfo("Nome do tema", ruralProperty.ThemeName);
 
                     row.RelativeItem(2)
                     .AlignRight()
-                    .TextInfo("Tipo de ímovel", "IRU");
+                    .TextInfo("Tipo de ímovel", ruralProperty.Type);
                 });
 
                 column
@@ -52,7 +52,7 @@ public class SICARHandler : BaseHandler, IReportHandler
                 .Row(row =>
                 {
                     row.RelativeItem(4)
-                    .TextInfo("Área total(ha)", "1000.00");
+                    .TextInfo("Área total(ha)", ruralProperty.AreaHa.ToString());
                 });
 
             });

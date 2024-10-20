@@ -5,8 +5,10 @@ using QuestPDF.Infrastructure;
 namespace Application.Services.ReportPDF.QuestPDFExtensions;
 static class TextExtension
 {
-	public static void TextInfo(this IContainer container, string textLabel, string textValue)
+	public static void TextInfo(this IContainer container, string textLabel, string? textValue)
 	{
+		textValue = textValue ?? string.Empty;
+
 		container
 				.PaddingVertical(5)
 				.Text(text =>
@@ -19,9 +21,9 @@ static class TextExtension
 	public static void TextTitle(this IContainer container, string textValue)
 	{
 		container
-      .Padding(10)
-      .Text(textValue)
-	  .Medium()
-      .AlignCenter();
+		  .Padding(10)
+		  .Text(textValue)
+		  .Medium()
+		  .AlignCenter();
 	}
 }

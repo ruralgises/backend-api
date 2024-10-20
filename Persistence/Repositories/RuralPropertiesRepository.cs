@@ -3,11 +3,6 @@ using Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NetTopologySuite.Geometries;
 using Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
@@ -22,7 +17,7 @@ namespace Persistence.Repositories
 
         public async Task<IList<RuralProperty>> GetByCoordinate(Coordinate coordinate, int? Skip, int? Take, CancellationToken cancellationToken)
         {
-            var query = _context.RuralProperties.Where(item => item.Geom != null && item.Geom.Intersects(new Point(coordinate)));
+            var query = _context.RuralProperties.Where(item => item.Geom != null && item.Geom.Intersects(new Point(coordinate) { SRID=4674}));
 
             if (Skip.HasValue)
             {

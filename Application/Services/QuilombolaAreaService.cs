@@ -3,7 +3,6 @@ using Application.DTOs.Response.Bases;
 using Application.Interfaces.Services;
 using Application.Mappers;
 using Domain.Entities;
-using Domain.Enumerations;
 using Domain.Interfaces.Repositories;
 using NetTopologySuite.Geometries;
 

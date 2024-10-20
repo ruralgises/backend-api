@@ -1,6 +1,8 @@
 using Application.DTOs.Response;
+using Application.DTOs.Response.Bases;
 using Application.Services.ReportPDF.QuestPDFExtensions;
 using QuestPDF.Fluent;
+using System.Runtime.CompilerServices;
 
 namespace Application.Services.ReportPDF.ReportHandler;
 
@@ -10,76 +12,79 @@ public class ConservationUnitHandler : BaseHandler, IReportHandler
     {
         column
           .Item()
-          .PaddingVertical(5)
+          .PaddingBottom(5)
           .Column(column =>
           {
               column
-             .Item()
-             .TextTitle("CNUC - UNIDADE DE CONSERVAÇÃO");
+             .InformationDataBase(ruralProperty.ConservationUnits.InformationDatabase);
 
               column
-              .Item()
-              .Row(row =>
+              .IntersectInformationTotal(ruralProperty.ConservationUnits);
+
+              foreach(var item in ruralProperty.ConservationUnits.Values)
               {
-                  row
-                  .RelativeItem(3)
-                  .TextInfo("Nome", "Reserva Biológica de Sooretama");
+                  column
+                  .Item()
+                  .Row(row =>
+                  {
+                      row
+                      .RelativeItem(3)
+                      .TextInfo("Nome", item.UCName);
 
-                  row.RelativeItem(3)
-                  .AlignRight()
-                  .TextInfo("Categoria", "Reserva Biológica");
-              });
+                      row.RelativeItem(3)
+                      .AlignRight()
+                      .TextInfo("Categoria", item.Category);
+                  });
 
-              column
-              .Item()
-              .Row(row =>
-              {
-                  row
-                  .RelativeItem(3)
-                  .TextInfo("Código", "0000.32.3452");
+                  column
+                  .Item()
+                  .Row(row =>
+                  {
+                      row
+                      .RelativeItem(3)
+                      .TextInfo("Código", item.CNUCCode);
 
-                  row.RelativeItem(3)
-                  .TextInfo("Fase", "Regularizada");
+                      row.RelativeItem(3)
+                      .AlignRight()
+                      .TextInfo("Esfera", item.Realm);
+                  });
 
-                  row.RelativeItem(3)
-                  .AlignRight()
-                  .TextInfo("Esfera", "Federal");
-              });
+                  column
+                  .Item()
+                  .TextInfo("Órgão gestor", item.ManagingBody);
 
-              column
-              .Item()
-              .TextInfo("Órgão gestor", "INSTITUTO CHICO MENDES DE CONSERVAÇÃO DA BIODIVERSIDADE");
+                  column
+                  .Item()
+                  .Row(row =>
+                  {
 
-              column
-              .Item()
-              .Row(row =>
-              {
+                  });
 
-              });
+                  //grupo, esfera, data criação, ato de criação,
+                  column
+                  .Item()
+                  .Row(row =>
+                  {
+                      row
+                      .RelativeItem(3)
+                      .TextInfo("Data de criação", item.YearCreation);
 
-              //grupo, esfera, data criação, ato de criação,
-              column
-              .Item()
-              .Row(row =>
-              {
-                  row
-                  .RelativeItem(3)
-                  .TextInfo("Data de criação", "28/02/1984");
+                      row
+                      .RelativeItem(3)
+                      .TextInfo("Grupo", item.Group);
+                  });
 
-                  row
-                  .RelativeItem(3)
-                  .TextInfo("Grupo", "Proteção Integral");
-              });
+                  column
+                  .Item()
+                  .Row(row =>
+                  {
+                      row.RelativeItem(3)
+                      .TextInfo("Ato de criação", item.ActCreation);
+                  });
 
-              column
-              .Item()
-              .Row(row =>
-              {
-
-
-                  row.RelativeItem(3)
-                  .TextInfo("Ato de criação", "Decreto 90.347/1984");
-              });
+                  column
+                  .IntersectInformation(item);
+              }
           });
 
 

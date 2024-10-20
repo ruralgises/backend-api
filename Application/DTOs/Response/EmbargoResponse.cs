@@ -13,14 +13,14 @@ namespace Application.DTOs.Response
         public string IdentificationEmbargoTerm { get; init; } = string.Empty;
         public DateOnly EmbargoIssuanceDate { get; init; }
         public string NameEmbargoed { get; init; } = string.Empty;
-        public string CPF_CNPJ { get; init; } = string.Empty;
-        public string AdministrativeProcessNumber { get; init; } = string.Empty;
-        public string TotalEmbargoArea { get; init; } = string.Empty;
-        public string InflationActNumber { get; init; } = string.Empty;
-        public string InfractionDescription { get; init; } = string.Empty;
+        public string? CPF_CNPJ { get; init; } = string.Empty;
+        public string ?AdministrativeProcessNumber { get; init; } = string.Empty;
+        public string? TotalEmbargoArea { get; init; } = string.Empty;
+        public string? InflationActNumber { get; init; } = string.Empty;
+        public string? InfractionDescription { get; init; } = string.Empty;
         public string Status { get; init; } = string.Empty;
         public DateOnly RegistrationDate { get; init; }
-        public string Legislation { get; init; } = string.Empty;
-        public string Article { get; init; } = string.Empty;
+        public string? Legislation { get; init; } = string.Empty;
+        public string? Article { get; init; } = string.Empty;
     }
 }

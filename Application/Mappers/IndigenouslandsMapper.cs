@@ -14,6 +14,7 @@ namespace Application.Mappers
         {
             return new IndigenouslandsResponse()
             {
+                LandCode = requisicao.LandCode,
                 adminUnitAcronym = requisicao.adminUnitAcronym,
                 adminUnitCode = requisicao.adminUnitCode,
                 adminUnitName = requisicao.adminUnitName,

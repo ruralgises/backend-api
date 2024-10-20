@@ -12,7 +12,7 @@ namespace Application.DTOs.Request
     {
         [Required]
         public Coordinate Coordinate { get; set; }
-        public int Skip { get; set; }
-        public int Take { set; get; }
+        public int? Skip { get; set; } = null;
+        public int? Take { set; get; } = null;
     }
 }

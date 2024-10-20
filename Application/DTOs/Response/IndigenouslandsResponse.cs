@@ -4,6 +4,7 @@ namespace Application.DTOs.Response
 {
     public class IndigenouslandsResponse : GeoSpatialBaseIntersectionResponse
     {
+        public int LandCode { get; set; }
         public string LandName { get; init; }
         public string EthnicityName { get; init; }
         public string IndigenousLandCreationPhase { get; init; }

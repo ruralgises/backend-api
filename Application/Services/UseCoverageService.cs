@@ -34,8 +34,11 @@ namespace Application.Services
                 {
                     Class = g.Key.Class,
                     Name = g.Key.Name,
-                    AreaIntersectHa = g.Sum(r => r.AreaIntersectHa)
-                }).ToList();
+                    AreaIntersectHa = g.Sum(r => r.AreaIntersectHa),
+                    PercentageOfThePropertyArea = g.Sum(r => r.PercentageOfThePropertyArea)
+                })
+                .Where(item => {  return item.AreaIntersectHa > 0; })
+                .ToList();
 
             var information = await _informationDatabaseService.GetByNameAsync(Domain.Enumerations.InformationDatabaseType.UseCoverage, cancellationToken);
 

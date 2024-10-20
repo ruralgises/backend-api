@@ -1,10 +1,5 @@
 ﻿using Application.DTOs.Response;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Mappers
 {
@@ -20,7 +15,8 @@ namespace Application.Mappers
                 Status = ruralPropertie.Status,
                 Type = ruralPropertie.Type,
                 Condition = ruralPropertie.Condition,
-                Municipio = ruralPropertie.Municipio
+                Municipio = ruralPropertie.Municipio,
+                Geom = ruralPropertie.Geom,
             };
         }
 

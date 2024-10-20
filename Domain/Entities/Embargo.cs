@@ -30,22 +30,22 @@ namespace Domain.Entities
         public DateOnly EmbargoIssuanceDate { get; private set; }
 
         [Column("nom_pessoa")] 
-        public string NameEmbargoed {  get; private set; } = string.Empty;
+        public string? NameEmbargoed {  get; private set; } = string.Empty;
 
         [Column("cpf_cnpj_i")]
-        public string CPF_CNPJ { get; private set; } = string.Empty;
+        public string? CPF_CNPJ { get; private set; } = string.Empty;
 
         [Column("processo_t")]
-        public string AdministrativeProcessNumber { get; private set; } = string.Empty;
+        public string? AdministrativeProcessNumber { get; private set; } = string.Empty;
 
         [Column("qtd_area_d")]
-        public string TotalEmbargoArea { get; private set; } = string.Empty;
+        public string? TotalEmbargoArea { get; private set; } = string.Empty;
 
         [Column("num_auto_i")]
-        public string InflationActNumber { get; private set; } = string.Empty;
+        public string? InflationActNumber { get; private set; } = string.Empty;
 
         [Column("des_infrac")]
-        public string InfractionDescription { get; private set; } = string.Empty;
+        public string? InfractionDescription { get; private set; } = string.Empty;
 
         [Column("status_tad")]
         public string Status { get; private set; } = string.Empty;
@@ -54,10 +54,10 @@ namespace Domain.Entities
         public DateOnly RegistrationDate { get; private set; }
 
         [Column("legislacao")]
-        public string Legislation { get; private set; } = string.Empty;
+        public string? Legislation { get; private set; } = string.Empty;
 
         [Column("artigo_leg")]
-        public string Article { get; private set; } = string.Empty;
+        public string? Article { get; private set; } = string.Empty;
 
         [Column("percentage_of_the_property_area")]
         public double PercentageOfThePropertyArea { get; init; }
