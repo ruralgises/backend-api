@@ -1,5 +1,4 @@
 using Application.DTOs.Request;
-using Application.DTOs.Response;
 using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +17,7 @@ namespace WebAPI.Controllers
             _ReportPDFService = reportPDFService;
         }
 
-        [HttpGet("bycode")]
+        [HttpGet()]
         public async Task<ActionResult> GetByCode([FromQuery] GetByCodeRuralPropretiesRequest request, CancellationToken cancellationToken = default)
         {
             var r = await _RuralPropertyService.GetByCode(request, cancellationToken);
