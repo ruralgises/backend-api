@@ -1,19 +1,26 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces.Repositories;
-using Persistence.Context;
-using Persistence.Repositories.Bases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Interfaces.Repositories.Bases;
+using NetTopologySuite.Geometries;
 
 namespace Persistence.Repositories
 {
-    internal class MessoreionsRepository : LocationsGeoSpatialBaseRepository<Messoregion>, IMessoreionRepository
+    internal class MessoreionsRepository : IMessoreionRepository
     {
-        public MessoreionsRepository(LocationDbContext context) : base(context)
+        private readonly ILocationsGeoSpatialBaseRepository<Messoregion> _locationsGeoSpatialBaseRepository;
+        public MessoreionsRepository(ILocationsGeoSpatialBaseRepository<Messoregion> locationsGeoSpatialBaseRepository)
         {
+            _locationsGeoSpatialBaseRepository = locationsGeoSpatialBaseRepository;
+        }
+
+        public Task<Messoregion> GetByGeometry(Geometry geometry, CancellationToken cancellationToken)
+        {
+            return _locationsGeoSpatialBaseRepository.GetByGeometry(geometry, cancellationToken);
+        }
+
+        public Task<Messoregion> GetByName(string name, CancellationToken cancellationToken)
+        {
+            return _locationsGeoSpatialBaseRepository.GetByName(name, cancellationToken);
         }
     }
 }

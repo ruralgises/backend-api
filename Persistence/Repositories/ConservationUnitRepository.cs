@@ -1,12 +1,25 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Repositories;
+using NetTopologySuite.Geometries;
 using Persistence.Context;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Repositories.Bases;
 using Persistence.Repositories.Bases;
 
 namespace Persistence.Repositories
 {
-    public class ConservationUnitRepository : GeoSpatialBaseIntersectionRepository<ConservationUnit>, IConservationUnitsRepository
+    public class ConservationUnitRepository : IConservationUnitsRepository
     {
-        public ConservationUnitRepository(ConservationUnitDbContext context) : base(context) { }
+        private readonly IGeoSpatialBaseIntersectionRepository<ConservationUnit> 
+            _geoSpatialBaseIntersectionRepository;
+        public ConservationUnitRepository(
+            GeoSpatialBaseIntersectionRepository<ConservationUnit, ConservationUnitDbContext> geoSpatialBaseIntersectionRepository
+            ) {
+            _geoSpatialBaseIntersectionRepository = geoSpatialBaseIntersectionRepository;
+        }
+
+        public Task<IList<ConservationUnit>> GetByGeometry(Geometry geometry, CancellationToken cancellationToken)
+        {
+            return _geoSpatialBaseIntersectionRepository.GetByGeometry(geometry, cancellationToken);
+        }
     }
 }

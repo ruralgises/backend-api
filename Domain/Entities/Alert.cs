@@ -33,8 +33,12 @@ namespace Domain.Entities
         [Column("dtpubli")]
         public DateOnly PublicationDate { get; init; }
 
+        [Column("anodetec")]
+        public int DetectYear {  get; init; }
+
         [Column("vpressao")]
         public string VectorPressure { get; init; }
+
         [Column("fonte")]
         public string Font {  get; init; }
 

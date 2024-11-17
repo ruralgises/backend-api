@@ -2,29 +2,26 @@
 using Domain.Interfaces.Repositories.Bases;
 using Microsoft.EntityFrameworkCore;
 using NetTopologySuite.Geometries;
-using NetTopologySuite.Index.HPRtree;
-using Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Persistence.Utils;
 
 namespace Persistence.Repositories.Bases
 {
-    public class GeoSpatialBaseIntersectionRepository<T> : IGeoSpatialBaseRepository<T> where T : class, GeoSpatialBaseIntersection
+    public class GeoSpatialBaseIntersectionRepository<T, Db> : IGeoSpatialBaseIntersectionRepository<T> 
+        where Db : DbContext 
+        where T : class, GeoSpatialBaseIntersection
     {
         private readonly DbContext _context;
-
-        public GeoSpatialBaseIntersectionRepository(DbContext context)
+        private readonly TableUltils _tableUltils;
+        public GeoSpatialBaseIntersectionRepository(Db context, TableUltils tableUltils)
         {
             _context = context;
+            _tableUltils = tableUltils;
         }
 
         public async Task<IList<T>> GetByGeometry(Geometry geometry, CancellationToken cancellationToken)
         {
             var wktGeometry = geometry.AsText(); // Converte a geometria para WKT
-            var tableName = GetTableName<T>(); // Obtém o nome da tabela dinamicamente
+            var tableName = _tableUltils.GetTableName<T>(_context); // Obtém o nome da tabela dinamicamente
 
             var results = await _context.Set<T>()
                 .FromSqlRaw($@"
@@ -47,19 +44,6 @@ namespace Persistence.Repositories.Bases
             var r = results.ToList();
 
             return r;
-        }
-
-        private string GetTableName<TEntity>() where TEntity : class
-        {
-            // Usa a API de metadados do Entity Framework Core para encontrar o nome da tabela
-            var entityType = _context.Model.FindEntityType(typeof(TEntity));
-            if (entityType == null)
-            {
-                throw new InvalidOperationException($"Cannot find table name for entity type {typeof(TEntity).FullName}");
-            }
-            var schema = entityType.GetSchema();
-            var tableName = entityType.GetTableName();
-            return string.IsNullOrEmpty(schema) ? tableName : $"{schema}.{tableName}";
         }
     }
 }

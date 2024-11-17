@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.DTOs.Response
+﻿namespace Application.DTOs.Response
 {
     public class LocationResponse
     {
-        public MunicipalityResponse? MunicipalityResponse { get; init; }
-        public MicroregionResponse? MicroregionResponse { get; init; }
-        public MessoregionResponse? MessoregionResponse { get; init; }
+        public MunicipalityResponse? Municipality { get; init; }
+        public MicroregionResponse? Microregion { get; init; }
+        public MessoregionResponse? Messoregion { get; init; }
 
         public InformationDatabaseResponse InformationDatabase { get; init; }
 
         public LocationResponse(MunicipalityResponse municipality, MicroregionResponse microregion, MessoregionResponse messoregion, InformationDatabaseResponse informationDatabase)
         {
-            this.MunicipalityResponse = municipality;
-            this.MicroregionResponse = microregion;
-            this.MessoregionResponse = messoregion;
+            this.Municipality = municipality;
+            this.Microregion = microregion;
+            this.Messoregion = messoregion;
             this.InformationDatabase = informationDatabase;
         }
     }

@@ -10,9 +10,9 @@ namespace Application.Mappers
 {
     public static class MessoregionMapper
     {
-        public static MessoregionResponse ToResponse(Messoregion messoregion)
+        public static DTOs.Response.MessoregionResponse ToResponse(Domain.Entities.Messoregion messoregion)
         {
-            return new MessoregionResponse()
+            return new DTOs.Response.MessoregionResponse()
             {
                 Code = messoregion.Code,
                 Name = messoregion.Name

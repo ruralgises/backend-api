@@ -25,13 +25,13 @@ namespace Application.Services.ReportPDF.ReportHandler
                   {
                       row
                       .RelativeItem(2)
-                      .TextInfo("Município", item?.MunicipalityResponse?.Name);
+                      .TextInfo("Município", item?.Municipality?.Name);
 
                       row.RelativeItem(2)
-                      .TextInfo("Microrregião", item?.MicroregionResponse?.Name);
+                      .TextInfo("Microrregião", item?.Microregion?.Name);
 
                       row.RelativeItem(2)
-                      .TextInfo("Mesorregião", item?.MessoregionResponse?.Name);
+                      .TextInfo("Mesorregião", item?.Messoregion?.Name);
                   });
 
                   column
@@ -40,13 +40,13 @@ namespace Application.Services.ReportPDF.ReportHandler
                  {
                      row
                      .RelativeItem(2)
-                     .TextInfo("Code", item?.MunicipalityResponse?.Code);
+                     .TextInfo("Code", item?.Municipality?.Code);
 
                      row.RelativeItem(2)
-                     .TextInfo("Code", item?.MicroregionResponse?.Code);
+                     .TextInfo("Code", item?.Microregion?.Code);
 
                      row.RelativeItem(2)
-                     .TextInfo("Code", item?.MessoregionResponse?.Code);
+                     .TextInfo("Code", item?.Messoregion?.Code);
                  });
               });
 

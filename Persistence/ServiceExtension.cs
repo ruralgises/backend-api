@@ -1,9 +1,12 @@
 ﻿using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Repositories.Bases;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Context;
 using Persistence.Repositories;
+using Persistence.Repositories.Bases;
+using Persistence.Utils;
 
 namespace Persistence
 {
@@ -24,6 +27,10 @@ namespace Persistence
             services.AddDbContext<SettlementsDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
             services.AddDbContext<UseCoverageDbContext>(opt => opt.UseNpgsql(connectionString, x => x.UseNetTopologySuite()));
 
+            services.AddSingleton<TableUltils>();
+
+            services.AddScoped(typeof(GeoSpatialBaseIntersectionRepository<,>));
+            services.AddScoped(typeof(ILocationsGeoSpatialBaseRepository<>), typeof(LocationsGeoSpatialBaseRepository<>));
             services.AddScoped<IInformationDatabaseRepository, InformationDatabaseRepository>();
             services.AddScoped<IDeforestationsRepository, DeforestationRepository>();
             services.AddScoped<IEmbargoesRepository, EmbagosRepository>();

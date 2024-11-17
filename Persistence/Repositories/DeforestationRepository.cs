@@ -1,18 +1,23 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Repositories;
 using NetTopologySuite.Geometries;
 using Persistence.Context;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Repositories.Bases;
 using Persistence.Repositories.Bases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
-    public class DeforestationRepository : GeoSpatialBaseIntersectionRepository<Deforestation>, IDeforestationsRepository
+    public class DeforestationRepository : IDeforestationsRepository
     {
-        public DeforestationRepository(DeforestationDbContext context) : base(context) { }
+        private readonly IGeoSpatialBaseIntersectionRepository<Deforestation> _geoSpatialBaseIntersectionRepository;
+        public DeforestationRepository(GeoSpatialBaseIntersectionRepository<Deforestation, DeforestationDbContext> geoSpatialBaseIntersectionRepository) {
+        
+            _geoSpatialBaseIntersectionRepository = geoSpatialBaseIntersectionRepository;
+        }
+
+        public Task<IList<Deforestation>> GetByGeometry(Geometry geometry, CancellationToken cancellationToken)
+        {
+            return _geoSpatialBaseIntersectionRepository.GetByGeometry(geometry, cancellationToken);
+        }
     }
 }

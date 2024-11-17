@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.Request;
 using Application.DTOs.Response;
+using Application.DTOs.Response.Bases;
 using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("bycode")]
-        public async Task<ActionResult<IList<RuralPropertyMinimumResponse>>> GetByCode([FromQuery] GetByCodeRuralPropretiesMinimumRequest request, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<GeoSpatialInformationResponse<RuralPropertyMinimumResponse>>> GetByCode([FromQuery] GetByCodeRuralPropretiesMinimumRequest request, CancellationToken cancellationToken = default)
         {
             var r = await _RuralPropertyMinimumService.GetByCode(request, cancellationToken);
 
@@ -25,7 +26,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("bycoordinate")]
-        public async Task<ActionResult<IList<RuralPropertyMinimumResponse>>> GetByCoordinate([FromQuery]  GetByCoordinateRuralPropretiesMinimumRequest request, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<GeoSpatialInformationResponse<RuralPropertyMinimumResponse>>> GetByCoordinate([FromQuery]  GetByCoordinateRuralPropretiesMinimumRequest request, CancellationToken cancellationToken = default)
         {
             var r = await _RuralPropertyMinimumService.GetByCoordinate(request, cancellationToken);
 

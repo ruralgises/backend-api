@@ -1,19 +1,23 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Repositories;
+using NetTopologySuite.Geometries;
 using Persistence.Context;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Repositories.Bases;
 using Persistence.Repositories.Bases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
-    internal class EmbagosRepository : GeoSpatialBaseIntersectionRepository<Embargo>, IEmbargoesRepository
+    internal class EmbagosRepository : IEmbargoesRepository
     {
-        public EmbagosRepository(EmbargoDbContext context) : base(context)
+        private readonly IGeoSpatialBaseIntersectionRepository<Embargo> _geoSpatialBaseIntersectionRepository;
+        public EmbagosRepository(GeoSpatialBaseIntersectionRepository<Embargo, EmbargoDbContext> geoSpatialBaseIntersectionRepository)
         {
+            _geoSpatialBaseIntersectionRepository = geoSpatialBaseIntersectionRepository;
+        }
+
+        public Task<IList<Embargo>> GetByGeometry(Geometry geometry, CancellationToken cancellationToken)
+        {
+            return _geoSpatialBaseIntersectionRepository.GetByGeometry(geometry, cancellationToken);
         }
     }
 }

@@ -10,9 +10,9 @@ namespace Application.Mappers
 {
     public static class MunicipalityMapper
     {
-        public static MunicipalityResponse ToResponse(Municipality municipality)
+        public static DTOs.Response.MunicipalityResponse ToResponse(Domain.Entities.Municipality municipality)
         {
-            return new MunicipalityResponse()
+            return new DTOs.Response.MunicipalityResponse()
             {
                 Code = municipality.Code,
                 Name = municipality.Name

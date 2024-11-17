@@ -1,20 +1,23 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Repositories;
-using Microsoft.EntityFrameworkCore;
+using NetTopologySuite.Geometries;
 using Persistence.Context;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Repositories.Bases;
 using Persistence.Repositories.Bases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence.Repositories
 {
-    public class UseCoverageRepository : GeoSpatialBaseIntersectionRepository<UseCoverage>, IUseCoverageRepository
+    public class UseCoverageRepository : IUseCoverageRepository
     {
-        public UseCoverageRepository(UseCoverageDbContext context) : base(context)
+        private readonly IGeoSpatialBaseIntersectionRepository<UseCoverage> _geoSpatialBaseIntersectionRepository;
+        public UseCoverageRepository(GeoSpatialBaseIntersectionRepository<UseCoverage, UseCoverageDbContext> geoSpatialBaseIntersectionRepository)
         {
+            _geoSpatialBaseIntersectionRepository = geoSpatialBaseIntersectionRepository;
+        }
+
+        public Task<IList<UseCoverage>> GetByGeometry(Geometry geometry, CancellationToken cancellationToken)
+        {
+            return _geoSpatialBaseIntersectionRepository.GetByGeometry(geometry, cancellationToken);
         }
     }
 }

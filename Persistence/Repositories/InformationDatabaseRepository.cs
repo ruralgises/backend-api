@@ -1,13 +1,6 @@
-﻿using Domain.Entities;
-using Domain.Enumerations;
-using Domain.Interfaces.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.Interfaces.Repositories;
 
 namespace Persistence.Repositories
 {

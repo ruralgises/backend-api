@@ -1,8 +1,8 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NetTopologySuite.Geometries;
 using Persistence.Context;
+using Domain.Interfaces.Repositories;
 
 namespace Persistence.Repositories
 {

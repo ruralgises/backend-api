@@ -11,7 +11,7 @@ namespace Application.DTOs.Request
     {
         [Required]
         [RegularExpression(@"^ES-\d{7}-[0-9A-F]{0,32}$", ErrorMessage = "O formato da string é inválido.")]
-        [StringLength(43, MinimumLength = 12, ErrorMessage = "A string deve ter entre 12 e 43 caracteres com os caracteres de separação.")]
+        [StringLength(43, MinimumLength = 13, ErrorMessage = "A string deve ter ao menos 13 caracteres")]
         public string Code { get; set; }
         public int? Skip { get; set; } = null;
         public int? Take { set; get; } = null;

@@ -16,6 +16,7 @@ namespace Application.Mappers
                 Font = requisicao.Font,
                 PublicationDate = requisicao.PublicationDate,
                 VectorPressure = requisicao.VectorPressure,
+                DetectYear = requisicao.DetectYear
             };
         }
     }

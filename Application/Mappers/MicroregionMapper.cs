@@ -10,9 +10,9 @@ namespace Application.Mappers
 {
     public static class MicroregionMapper
     {
-        public static MicroregionResponse ToResponse(Microregion microregion)
+        public static DTOs.Response.MicroregionResponse ToResponse(Domain.Entities.Microregion microregion)
         {
-            return new MicroregionResponse()
+            return new DTOs.Response.MicroregionResponse()
             {
                 Code = microregion.Code,
                 Name = microregion.Name
