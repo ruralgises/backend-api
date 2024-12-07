@@ -15,9 +15,9 @@ namespace Persistence.Repositories
             _context = context;
         }
 
-        public async Task<IList<RuralProperty>> GetByCoordinate(Coordinate coordinate, int? Skip, int? Take, CancellationToken cancellationToken)
+        public async Task<IList<RuralProperty>> GetByGeometry(Geometry geometry, int? Skip, int? Take, CancellationToken cancellationToken)
         {
-            var query = _context.RuralProperties.Where(item => item.Geom != null && item.Geom.Intersects(new Point(coordinate) { SRID=4674}));
+            var query = _context.RuralProperties.Where(item => item.Geom != null && item.Geom.Intersects(geometry));
 
             if (Skip.HasValue)
             {

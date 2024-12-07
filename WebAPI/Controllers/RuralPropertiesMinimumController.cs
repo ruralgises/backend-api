@@ -25,10 +25,11 @@ namespace WebAPI.Controllers
             return Ok(r);
         }
 
-        [HttpGet("bycoordinate")]
-        public async Task<ActionResult<GeoSpatialInformationResponse<RuralPropertyMinimumResponse>>> GetByCoordinate([FromQuery]  GetByCoordinateRuralPropretiesMinimumRequest request, CancellationToken cancellationToken = default)
+        [HttpPost("bygeometry")]
+        public async Task<ActionResult<GeoSpatialInformationResponse<RuralPropertyMinimumResponse>>> GetByGeometry([FromBody]  GetByGeometryRuralPropretiesMinimumRequest request, CancellationToken cancellationToken = default)
         {
-            var r = await _RuralPropertyMinimumService.GetByCoordinate(request, cancellationToken);
+            request.Geometry.SRID = 4674;
+            var r = await _RuralPropertyMinimumService.GetByGeometry(request, cancellationToken);
 
             return Ok(r);
         }

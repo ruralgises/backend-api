@@ -27,9 +27,9 @@ namespace Application.Services
             return new GeoSpatialInformationResponse<RuralPropertyMinimumResponse>(RuralPropertyMinimoMapper.ToResponse(r), await information);
         }
 
-        public async Task<GeoSpatialInformationResponse<RuralPropertyMinimumResponse>> GetByCoordinate(GetByCoordinateRuralPropretiesMinimumRequest request, CancellationToken cancellationToken)
+        public async Task<GeoSpatialInformationResponse<RuralPropertyMinimumResponse>> GetByGeometry(GetByGeometryRuralPropretiesMinimumRequest request, CancellationToken cancellationToken)
         {
-            var r = await _Repository.GetByCoordinate(request.Coordinate, request.Skip, request.Take, cancellationToken);
+            var r = await _Repository.GetByGeometry(request.Geometry, request.Skip, request.Take, cancellationToken);
             var information = _informationDatabaseService.GetByNameAsync(InformationDatabaseType.RuralProperty, cancellationToken);
 
             return new GeoSpatialInformationResponse<RuralPropertyMinimumResponse>(RuralPropertyMinimoMapper.ToResponse(r), await information);
