@@ -17,12 +17,12 @@ namespace Application.Services.ReportPDF.QuestPDFExtensions
             {
                 row
                 .RelativeItem(4)
-                .TextInfo("Área total(ha)",
+                .TextInfo("Área total (ha)",
                     informationResponse.AreaIntersectTotalHa.ToString("N2"));
 
                 row
                 .RelativeItem(2)
-                .TextInfo("Área total(%)",
+                .TextInfo("Área total (%)",
                     informationResponse.PercentageOfThePropertyAreaTotal.ToString("N2"));
             });
         }

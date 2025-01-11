@@ -8,10 +8,10 @@ namespace Application.Services
 {
     public class LocationService : ILocationService
     {
-        private ILocationsRepository _locationsRepository { get; init; }
+        private ILocationRepository _locationsRepository { get; init; }
         private IInformationDatabaseService _informationDatabaseService;
 
-        public LocationService(ILocationsRepository locationsRepository, IInformationDatabaseService informationDatabaseService)
+        public LocationService(ILocationRepository locationsRepository, IInformationDatabaseService informationDatabaseService)
         {
             _locationsRepository = locationsRepository;
             _informationDatabaseService = informationDatabaseService;

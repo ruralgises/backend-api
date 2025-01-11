@@ -3,7 +3,7 @@ using Domain.Interfaces.Repositories;
 
 namespace Persistence.Repositories
 {
-    public class LocationsRepository : ILocationsRepository
+    public class LocationRepository : ILocationRepository
     {
         private readonly IMunicipalitiesRepository _municipalityRepository;
         private readonly IMicroregionRepository _microregionRepository;
@@ -11,7 +11,7 @@ namespace Persistence.Repositories
 
         private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1); // Semáforo para sincronização
 
-        public LocationsRepository(
+        public LocationRepository(
             IMunicipalitiesRepository municipalityRepository, 
             IMicroregionRepository microregionRepository, 
             IMessoreionRepository messoreionRepository

@@ -14,7 +14,8 @@ public class IndigenouslandsHandler : BaseHandler, IReportHandler
          .Column(column =>
          {
              column
-              .InformationDataBase(ruralProperty.Indigenousland.InformationDatabase);
+              .InformationDataBase(ruralProperty.Indigenousland.InformationDatabase,
+              "Sobreposição com terras indígenas - " + ruralProperty.Indigenousland.InformationDatabase.DatabaseName);
 
              column
              .IntersectInformationTotal(ruralProperty.Indigenousland);

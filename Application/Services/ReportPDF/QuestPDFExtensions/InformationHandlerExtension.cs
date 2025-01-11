@@ -7,11 +7,13 @@ namespace Application.Services.ReportPDF.QuestPDFExtensions
     {
         public static void InformationDataBase(
             this ColumnDescriptor descriptor,
-            InformationDatabaseResponse informationResponse
-        ){
+            InformationDatabaseResponse informationResponse,
+            string databaseDecription
+        )
+        {
             descriptor
                   .Item()
-                  .TextTitle(informationResponse.DatabaseName);
+                  .TextTitle(databaseDecription);
 
             descriptor
                 .Item()

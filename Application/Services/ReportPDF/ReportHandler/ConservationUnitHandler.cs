@@ -16,7 +16,8 @@ public class ConservationUnitHandler : BaseHandler, IReportHandler
           .Column(column =>
           {
               column
-             .InformationDataBase(ruralProperty.ConservationUnits.InformationDatabase);
+             .InformationDataBase(ruralProperty.ConservationUnits.InformationDatabase,
+             "Sobreposição com unidades de conservação - " + ruralProperty.ConservationUnits.InformationDatabase.DatabaseName);
 
               column
               .IntersectInformationTotal(ruralProperty.ConservationUnits);

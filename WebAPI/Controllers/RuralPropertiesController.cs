@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
         [HttpGet("report")]
         public async Task<IActionResult> GetReport([FromQuery] GetByCodeRuralPropretiesRequest request, CancellationToken cancellationToken = default)
         {
-            var pdf = await _ReportPDFService.getReportPDF(request, cancellationToken);
+            var pdf = await _ReportPDFService.GetReportPDF(request, cancellationToken);
 
             if (pdf == null)
             {

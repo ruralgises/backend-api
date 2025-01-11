@@ -20,7 +20,7 @@ namespace Application.Services
             _propertyService = propertyService;
         }
 
-        public async Task<byte[]?> getReportPDF(GetByCodeRuralPropretiesRequest CAR, CancellationToken cancellationToken)
+        public async Task<byte[]?> GetReportPDF(GetByCodeRuralPropretiesRequest CAR, CancellationToken cancellationToken)
         {
             var ruralPropert = await _propertyService.GetByCode(CAR, cancellationToken);
 

@@ -30,7 +30,6 @@ namespace WebAPI.Controllers
         {
             request.Geometry.SRID = 4674;
             var r = await _RuralPropertyMinimumService.GetByGeometry(request, cancellationToken);
-
             return Ok(r);
         }
     }

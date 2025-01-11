@@ -16,7 +16,8 @@ public class EmbargoHandler : BaseHandler, IReportHandler
                //column.Item().PageBreak();
 
                column
-               .InformationDataBase(ruralProperty.Embargoes.InformationDatabase);
+               .InformationDataBase(ruralProperty.Embargoes.InformationDatabase,
+               "Sobreposição embargos - " + ruralProperty.Embargoes.InformationDatabase.DatabaseName);
 
                column
                .IntersectInformationTotal(ruralProperty.Embargoes);

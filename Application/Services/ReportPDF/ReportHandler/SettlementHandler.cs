@@ -14,7 +14,8 @@ namespace Application.Services.ReportPDF.ReportHandler
                .Column(column =>
                {
                    column
-                   .InformationDataBase(ruralProperty.Settlements.InformationDatabase);
+                   .InformationDataBase(ruralProperty.Settlements.InformationDatabase,
+                   "Sobreposição com assentamentos - " + ruralProperty.Settlements.InformationDatabase.DatabaseName);
 
                    column
                    .IntersectInformationTotal(ruralProperty.Settlements);

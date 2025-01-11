@@ -14,7 +14,8 @@ namespace Application.Services.ReportPDF.ReportHandler
                .Column(column =>
                {
                    column
-                   .InformationDataBase(ruralProperty.QuilombolaAreas.InformationDatabase);
+                   .InformationDataBase(ruralProperty.QuilombolaAreas.InformationDatabase,
+                   "Sobreposição com territórios de quilombolas - " + ruralProperty.QuilombolaAreas.InformationDatabase.DatabaseName);
 
                    column
                    .IntersectInformationTotal(ruralProperty.QuilombolaAreas);

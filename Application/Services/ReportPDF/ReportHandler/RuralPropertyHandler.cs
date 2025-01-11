@@ -16,7 +16,8 @@ public class RuralPropertyHandler : BaseHandler, IReportHandler
             .Column(column =>
             {
                 column
-                .InformationDataBase(ruralProperty.InformationDatabase);
+                .InformationDataBase(ruralProperty.InformationDatabase,
+                "Propriedade rural - " + ruralProperty.InformationDatabase.DatabaseName);
 
                 column
                 .Item()

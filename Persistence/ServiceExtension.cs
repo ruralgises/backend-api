@@ -41,7 +41,7 @@ namespace Persistence
             services.AddScoped<IMunicipalitiesRepository, MunicipalitiesRepository>();
             services.AddScoped<IMicroregionRepository, MicroregionsRepository>();
             services.AddScoped<IMessoreionRepository, MessoreionsRepository>();
-            services.AddScoped<ILocationsRepository, LocationsRepository>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<IUseCoverageRepository, UseCoverageRepository>();
             services.AddScoped<IIndigenouslandsRepository, IndigenouslandsRepository>();
             services.AddScoped<IRuralPropertiesRepository, RuralPropertiesRepository>();

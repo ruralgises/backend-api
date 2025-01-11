@@ -14,7 +14,8 @@ public class DeforestationHandler : BaseHandler, IReportHandler
           .Column(column =>
           {
               column
-              .InformationDataBase(ruralProperty.Deforestations.InformationDatabase);
+              .InformationDataBase(ruralProperty.Deforestations.InformationDatabase,
+              "Sobreposição com desflorestamento - " + ruralProperty.Deforestations.InformationDatabase.DatabaseName);
 
               column
               .IntersectInformationTotal(ruralProperty.Deforestations);

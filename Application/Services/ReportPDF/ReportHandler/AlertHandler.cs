@@ -15,7 +15,9 @@ namespace Application.Services.ReportPDF.ReportHandler
               .Column(column =>
               {
                   column
-                 .InformationDataBase(ruralProperty.Alert.InformationDatabase);
+                 .InformationDataBase(
+                      ruralProperty.Alert.InformationDatabase,
+                 "Sobreposição com alertas de desmatamento - " + ruralProperty.Alert.InformationDatabase.DatabaseName);
 
                   column
                   .IntersectInformationTotal(ruralProperty.Alert);

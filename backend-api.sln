@@ -14,13 +14,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{41756B08-6F97-486B-B2F0-459C401CCCA1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{42513BEA-0CB2-4E15-8506-068BC4832BDE}"
-	ProjectSection(ProjectDependencies) = postProject
-		{C1F2DD63-8997-4A20-8D54-481FED2DDB94} = {C1F2DD63-8997-4A20-8D54-481FED2DDB94}
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{8589ECAE-0CFC-4B61-9EF2-3779A75CFF68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoC", "IoC\IoC.csproj", "{205DAB66-BD12-4CF6-B2D6-4DC4B73CAF39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoC", "IoC\IoC.csproj", "{205DAB66-BD12-4CF6-B2D6-4DC4B73CAF39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

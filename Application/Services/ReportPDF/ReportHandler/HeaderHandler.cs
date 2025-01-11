@@ -15,7 +15,7 @@ public class HeaderHandler : BaseHandler, IReportHandler
                header
                .Item()
                .PaddingVertical(10)
-               .Text("RELATÓRIO DE INFORMAÇÕES AMBIENTAIS")
+               .Text("RELATÓRIO")
                .FontSize(16)
                .Bold()
                .AlignCenter();

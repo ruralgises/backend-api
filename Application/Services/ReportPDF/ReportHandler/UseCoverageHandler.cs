@@ -14,7 +14,8 @@ namespace Application.Services.ReportPDF.ReportHandler
                .Column(column =>
                {
                    column
-                   .InformationDataBase(ruralProperty.UseCoverage.InformationDatabase);
+                   .InformationDataBase(ruralProperty.UseCoverage.InformationDatabase,
+                   "Sobreposição com uso e cobertura da terra - " + ruralProperty.UseCoverage.InformationDatabase.DatabaseName);
 
                    column
                    .IntersectInformationTotal(ruralProperty.UseCoverage);

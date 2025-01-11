@@ -15,7 +15,8 @@ namespace Application.Services.ReportPDF.ReportHandler
               .Column(column =>
               {
                   column
-                    .InformationDataBase(ruralProperty.Location.InformationDatabase);
+                    .InformationDataBase(ruralProperty.Location.InformationDatabase, 
+                    "Localização - " + ruralProperty.Location.InformationDatabase.DatabaseName);
 
                   var item = ruralProperty.Location;
 
@@ -34,20 +35,20 @@ namespace Application.Services.ReportPDF.ReportHandler
                       .TextInfo("Mesorregião", item?.Messoregion?.Name);
                   });
 
-                  column
-                 .Item()
-                 .Row(row =>
-                 {
-                     row
-                     .RelativeItem(2)
-                     .TextInfo("Code", item?.Municipality?.Code);
+                 // column
+                 //.Item()
+                 //.Row(row =>
+                 //{
+                 //    row
+                 //    .RelativeItem(2)
+                 //    .TextInfo("Code", item?.Municipality?.Code);
 
-                     row.RelativeItem(2)
-                     .TextInfo("Code", item?.Microregion?.Code);
+                 //    row.RelativeItem(2)
+                 //    .TextInfo("Code", item?.Microregion?.Code);
 
-                     row.RelativeItem(2)
-                     .TextInfo("Code", item?.Messoregion?.Code);
-                 });
+                 //    row.RelativeItem(2)
+                 //    .TextInfo("Code", item?.Messoregion?.Code);
+                 //});
               });
 
             this._nextHandler?.Handler(column, ruralProperty);
