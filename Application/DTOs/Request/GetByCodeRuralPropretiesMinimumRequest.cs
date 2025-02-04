@@ -10,7 +10,7 @@ namespace Application.DTOs.Request
     public class GetByCodeRuralPropretiesMinimumRequest
     {
         [Required]
-        [RegularExpression(@"^ES-\d{7}-[0-9A-F]{0,32}$", ErrorMessage = "O formato da string é inválido.")]
+        [RegularExpression(@"^[A-Z]{2}-\d{7}-[0-9A-F]{0,32}$", ErrorMessage = "O formato da string é inválido.")]
         [StringLength(43, MinimumLength = 13, ErrorMessage = "A string deve ter ao menos 13 caracteres")]
         public string Code { get; set; }
         public int? Skip { get; set; } = null;

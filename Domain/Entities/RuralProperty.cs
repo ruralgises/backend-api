@@ -19,10 +19,10 @@ namespace Domain.Entities
         public string ThemeName { get; private set; } = string.Empty;
 
         [Column("cod_imovel")]
-        public string Code { get; private set; } = string.Empty;
+        public string? Code { get; private set; } = string.Empty;
 
         [Column("num_area")]
-        public double AreaHa { get; set; }
+        public double? AreaHa { get; set; }
 
         [Column("ind_status")]
 

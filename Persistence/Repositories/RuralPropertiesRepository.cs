@@ -17,7 +17,7 @@ namespace Persistence.Repositories
 
         public async Task<IList<RuralProperty>> GetByGeometry(Geometry geometry, int? Skip, int? Take, CancellationToken cancellationToken)
         {
-            var query = _context.RuralProperties.Where(item => item.Geom != null && item.Geom.Intersects(geometry));
+            var query = _context.RuralProperties.Where(item => item.Code != null && item.Geom != null && item.Geom.Intersects(geometry));
 
             if (Skip.HasValue)
             {

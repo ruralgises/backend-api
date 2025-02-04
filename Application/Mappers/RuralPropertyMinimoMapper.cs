@@ -11,7 +11,7 @@ namespace Application.Mappers
             {
                 ThemeName = ruralPropertie.ThemeName,
                 Code = ruralPropertie.Code,
-                AreaHa = ruralPropertie.AreaHa,
+                AreaHa = ruralPropertie.AreaHa ?? 0,
                 Status = ruralPropertie.Status,
                 Type = ruralPropertie.Type,
                 Condition = ruralPropertie.Condition,
