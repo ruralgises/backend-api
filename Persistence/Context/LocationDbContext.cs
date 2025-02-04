@@ -1,10 +1,5 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence.Context
 {
@@ -19,24 +14,6 @@ namespace Persistence.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Municipality>()
-                .Property(m => m.Name).HasColumnName("nm_mun");
-
-            modelBuilder.Entity<Municipality>()
-                .Property(m => m.Code).HasColumnName("cd_mun");
-
-            modelBuilder.Entity<Microregion>()
-                .Property(m => m.Name).HasColumnName("nm_micro");
-
-            modelBuilder.Entity<Microregion>()
-                .Property(m => m.Code).HasColumnName("cd_micro");
-
-            modelBuilder.Entity<Messoregion>()
-                .Property(m => m.Name).HasColumnName("nm_meso");
-
-            modelBuilder.Entity<Messoregion>()
-                .Property(m => m.Code).HasColumnName("cd_meso");
         }
     }
 }

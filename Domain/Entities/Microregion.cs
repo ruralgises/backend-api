@@ -19,7 +19,9 @@ namespace Domain.Entities
 
         [Column("geom", TypeName = "geometry(Polygon, 4674)")]
         public Geometry? Geom { get; init; }
+        [Column("cd_micro")]
         public string Code { get; init; }
+        [Column("nm_micro")]
         public string Name { get; init; }
         protected Microregion() { }
     }

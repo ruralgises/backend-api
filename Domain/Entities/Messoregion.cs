@@ -19,7 +19,9 @@ namespace Domain.Entities
 
         [Column("geom", TypeName = "geometry(Polygon, 4674)")]
         public Geometry? Geom { get; init; }
+        [Column("nm_meso")]
         public string Code { get; init; }
+        [Column("cd_meso")]
         public string Name { get; init; }
         protected Messoregion() { }
     }
