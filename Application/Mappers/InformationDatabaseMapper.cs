@@ -13,7 +13,7 @@ namespace Application.Mappers
             {
                 LastUpdate = information.LastUpdate,
                 DatabaseName = information.DatabaseName,
-                IsOfficial = information.IsOfficial,
+                IsGovernmental = information.IsGovernmental,
             };
         }
     }

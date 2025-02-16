@@ -11,6 +11,6 @@ namespace Application.DTOs.Response
         public string DatabaseName { get; set; } = string.Empty;
         public DateOnly LastUpdate { get; set; }
 
-        public bool IsOfficial { get; set; }
+        public bool IsGovernmental { get; set; }
     }
 }

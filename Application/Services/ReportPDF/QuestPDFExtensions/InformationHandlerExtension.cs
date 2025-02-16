@@ -21,7 +21,7 @@ namespace Application.Services.ReportPDF.QuestPDFExtensions
                 {
                     row
                         .RelativeItem(3)
-                        .TextInfo("Governamental", informationResponse.IsOfficial ? "Sim" : "Não");
+                        .TextInfo("Governamental", informationResponse.IsGovernmental ? "Sim" : "Não");
                     row
                         .RelativeItem(3)
                         .AlignRight()
